@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
 public class Telefono {
+    String personal, celular, laboral;
 }

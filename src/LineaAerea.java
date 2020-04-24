@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
 public class LineaAerea {
+    String aerolinea;
+    //Alianza y vuelos
 }
+

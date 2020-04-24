@@ -1,4 +1,9 @@
-package PACKAGE_NAME;
+import java.util.Date;
 
 public class Pasaporte {
+    String numero, autoridadDeEmision;
+    //pais de emision
+    Date fechaDeEmision;
+    Date fechaDeVencimiento;
 }
+
