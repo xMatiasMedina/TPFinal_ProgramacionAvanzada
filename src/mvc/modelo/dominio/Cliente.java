@@ -1,4 +1,4 @@
-package modelo.dominio;
+package mvc.modelo.dominio;
 
 import java.util.Date;
 

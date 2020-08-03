@@ -1,4 +1,4 @@
-package modelo.dominio;
+package mvc.modelo.dominio;
 
 public class LineaAerea {
     String aerolinea;

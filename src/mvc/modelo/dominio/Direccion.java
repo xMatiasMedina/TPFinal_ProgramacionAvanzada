@@ -1,4 +1,4 @@
-package modelo.dominio;
+package mvc.modelo.dominio;
 
 public class Direccion {
     String calle, altura, ciudad, codigoPostal;
