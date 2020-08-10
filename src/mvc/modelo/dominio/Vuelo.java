@@ -4,12 +4,12 @@ package mvc.modelo.dominio;
 import java.util.*;
 
 /*
-10) Los números de vuelo deberán formarse como:
-a. Las primeras 2 letras del nombre de la aerolínea, en el caso que sea un nombre
-compuesto (Ej. Aerolíneas Argentinas) se formará con la primer letra de los primeras
+10) Los nï¿½meros de vuelo deberï¿½n formarse como:
+a. Las primeras 2 letras del nombre de la aerolï¿½nea, en el caso que sea un nombre
+compuesto (Ej. Aerolï¿½neas Argentinas) se formarï¿½ con la primer letra de los primeras
 2 palabras (en el ejemplo: AA)
 b. Un guion medio (-)
-c. El valor número del número con una longitud de 4 dígitos
+c. El valor nï¿½mero del nï¿½mero con una longitud de 4 dï¿½gitos -> Esto es un metodo
 d. Ejemplo: AR-1234
 */
 
@@ -29,7 +29,7 @@ public class Vuelo {
 					
 			int id = ++CONT;
 
-			idVuelo = aerolinea.getId() + "-" + id;
+			idVuelo = aerolinea.getIniciales() + "-" + id; //Lo arregle
 			
 			this.cantidadDeAsientos = cantidadDeAsientos;
 			this.aeropuertoDeSalida = aeropuertoDeSalida;
@@ -109,7 +109,6 @@ public class Vuelo {
 		public int getDisponibles() {
 			return cantidadDeAsientos - vendidos;
 		}
-
 }
 
 

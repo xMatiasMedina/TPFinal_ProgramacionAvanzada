@@ -14,16 +14,16 @@ public class LineaAerea {
 	public LineaAerea() {}
 
 	public LineaAerea(String aerolinea, Alianza alianza) {
-		id = ++CONT;//Establece un valor automático incremental como Id
-		//Se generan las iniciales de la línea aérea a partir del nombre.
+		id = ++CONT;//Establece un valor automï¿½tico incremental como Id
+		//Se generan las iniciales de la lï¿½nea aï¿½rea a partir del nombre.
 		String s[] = aerolinea.split(" ");
 		if(s.length == 1) {
 			iniciales= aerolinea.substring(0, 2);
 		} else {
-			iniciales = s[0].substring(0, 1) + s[1].substring(0, 1);
+			iniciales = s[0].charAt(0)+""+s[1].charAt(0); //Esto lo acomode mejor
 		}
-		this.aerolinea = aerolinea;//Se asigna localmente el nombre de aerolínea recibido por parámetro.
-		this.alianza = alianza;//Se asigna localmente la Alianza recibida por parámetro.
+		this.aerolinea = aerolinea;//Se asigna localmente el nombre de aerolï¿½nea recibido por parï¿½metro.
+		this.alianza = alianza;//Se asigna localmente la Alianza recibida por parï¿½metro.
 	}
 	
 	public String getIniciales() {
