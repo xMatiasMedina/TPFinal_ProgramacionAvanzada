@@ -4,17 +4,29 @@ import java.util.*;
 
 public class LineaAerea {
 	
-	private static int CONT = 0;
+	private String idLineaAerea;
 	private String iniciales;
 	private String aerolinea;
 	private Alianza alianza;
 	private ArrayList<Vuelo> vuelos;
-	private int id;
-
+	
 	public LineaAerea() {}
-
-	public LineaAerea(String aerolinea, Alianza alianza) {
-		id = ++CONT;//Establece un valor automático incremental como Id
+	
+	
+	// Este constructor se usa para instanciar en memoria un objeto DESPUÉS de haber
+    // agregado la Linea Aerea a la base de datos, que produce un ID automático
+	
+	/*
+		Las iniciales se determinan directa y unívocamente a partir del nombre de la aerolínea, por lo tanto
+		no sería un parámetro a recibir en el construnctor sino que se establecen inmediatamente a partir del nombre.
+		Las iniciales NO SON el ID, sino una especie de abreviatura del nombre que se usa para referirse a la aerolínea
+		(ver clase Vuelo)
+	*/
+	public LineaAerea(String idLineaAerea, String aerolinea, Alianza alianza, ArrayList<Vuelo> vuelos) {
+		this.idLineaAerea=idLineaAerea;
+		this.aerolinea=aerolinea;
+		this.alianza=alianza;
+		this.vuelos=vuelos;
 		//Se generan las iniciales de la línea aérea a partir del nombre.
 		String s[] = aerolinea.split(" ");
 		if(s.length == 1) {
@@ -22,18 +34,39 @@ public class LineaAerea {
 		} else {
 			iniciales = s[0].substring(0, 1) + s[1].substring(0, 1);
 		}
+	}
+
+	/*
+		COMENTARIO: Este constructor se usaría ANTES de agregar la Línea Aérea a la base de datos, pues ésta producirá
+		un ID automáticamente que luego se incorpora a la instancia a través del método setIdLineaAerea().
+	
+	*/
+	public LineaAerea(String aerolinea, Alianza alianza, ArrayList<Vuelo> vuelos) {
+		//Se generan las iniciales de la línea aérea a partir del nombre.
+		String s[] = aerolinea.split(" ");
+		if(s.length == 1) {
+			iniciales= aerolinea.substring(0, 2);
+		} else {
+			iniciales = s[0].substring(0, 1) + s[1].substring(0, 1);
+		}
+		this.vuelos=vuelos;
 		this.aerolinea = aerolinea;//Se asigna localmente el nombre de aerolínea recibido por parámetro.
 		this.alianza = alianza;//Se asigna localmente la Alianza recibida por parámetro.
 	}
+	
 	
 	public String getIniciales() {
 		return iniciales;
 	}
 	
-	public int getId() {
-		return id;
+	public String getIdLineaAerea() {
+		return idLineaAerea;
 	}
-
+	
+	public void setIdLineaAerea(String idLineaAerea) {
+		this.idLineaAerea= idLineaAerea;
+	}
+	
 	public String getAerolinea() {
 		return aerolinea;
 	}

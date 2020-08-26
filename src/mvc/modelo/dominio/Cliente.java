@@ -3,8 +3,8 @@ package mvc.modelo.dominio;
 import java.util.*;
 
 public class Cliente {
-
-    private int idCliente;
+	
+    private String idCliente;
 	private String nombre;
 	private String apellido;
 	private String dni;
@@ -16,9 +16,16 @@ public class Cliente {
 	private PasajeroFrecuente pasajerofrecuente;
 	private Direccion direccion;
 	
+	/*
+		COMENTARIO: Este constructor por defecto se usa para instanciar en memoria un objeto sin conocer aún sus datos,
+		que pueden establecerse luego mediante los setters correspondientes, en particular el ID, que será generado
+		automáticamente por la base de datos
+	*/
 	public Cliente() {}
 	
-	public Cliente(int idCliente, String nombre, String apellido, String dni, String email, String cuit,
+	// Este constructor se usa para instanciar en memoria un objeto DESPUÉS de haber
+    // agregado el cliente a la base de datos, que produce un ID automático
+	public Cliente(String idCliente, String nombre, String apellido, String dni, String email, String cuit,
 			Pasaporte pasaporte, Date fechaDeNacimiento, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
 			Direccion direccion) {
 		this.idCliente = idCliente;
@@ -34,8 +41,13 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	public int getIdCliente() {
+	
+	public String getIdCliente() {
 		return idCliente;
+	}
+	
+	public void setIdCliente(String idCliente) {
+		this.idCliente = idCliente;
 	}
 	public String getNombre() {
 		return nombre;
