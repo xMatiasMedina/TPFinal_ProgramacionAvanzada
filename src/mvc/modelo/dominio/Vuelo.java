@@ -29,8 +29,7 @@ public class Vuelo {
 					
 			int id = ++CONT;
 
-			idVuelo = aerolinea.getId() + "-" + id;
-			
+			idVuelo = aerolinea.getIniciales()+ "-" + id;			
 			this.cantidadDeAsientos = cantidadDeAsientos;
 			this.aeropuertoDeSalida = aeropuertoDeSalida;
 			this.aeropuertoDeLlegada = aeropuertoDeLlegada;
