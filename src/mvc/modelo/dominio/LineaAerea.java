@@ -1,17 +1,18 @@
+
 package mvc.modelo.dominio;
 
 import java.util.*;
 
 public class LineaAerea {
 	
-	private String idLineaAerea;
+	private static int CONT = 0;
 	private String iniciales;
 	private String aerolinea;
 	private Alianza alianza;
 	private ArrayList<Vuelo> vuelos;
-	
+	private int id;
+
 	public LineaAerea() {}
-	
 	
 	// Este constructor se usa para instanciar en memoria un objeto DESPUÉS de haber
     // agregado la Linea Aerea a la base de datos, que produce un ID automático
@@ -22,36 +23,18 @@ public class LineaAerea {
 		Las iniciales NO SON el ID, sino una especie de abreviatura del nombre que se usa para referirse a la aerolínea
 		(ver clase Vuelo)
 	*/
-	public LineaAerea(String idLineaAerea, String aerolinea, Alianza alianza, ArrayList<Vuelo> vuelos) {
-		this.idLineaAerea=idLineaAerea;
-		this.aerolinea=aerolinea;
-		this.alianza=alianza;
-		this.vuelos=vuelos;
-		//Se generan las iniciales de la línea aérea a partir del nombre.
-		String s[] = aerolinea.split(" ");
-		if(s.length == 1) {
-			iniciales= aerolinea.substring(0, 2);
-		} else {
-			iniciales = s[0].substring(0, 1) + s[1].substring(0, 1);
-		}
-	}
 
-	/*
-		COMENTARIO: Este constructor se usaría ANTES de agregar la Línea Aérea a la base de datos, pues ésta producirá
-		un ID automáticamente que luego se incorpora a la instancia a través del método setIdLineaAerea().
-	
-	*/
-	public LineaAerea(String aerolinea, Alianza alianza, ArrayList<Vuelo> vuelos) {
-		//Se generan las iniciales de la línea aérea a partir del nombre.
+	public LineaAerea(String aerolinea, Alianza alianza) {
+		id = ++CONT;//Establece un valor automatico incremental como Id
+		//Se generan las iniciales de la linea aerea a partir del nombre.
 		String s[] = aerolinea.split(" ");
 		if(s.length == 1) {
 			iniciales= aerolinea.substring(0, 2);
 		} else {
-			iniciales = s[0].substring(0, 1) + s[1].substring(0, 1);
+			iniciales = s[0].charAt(0)+""+s[1].charAt(0); //Esto lo acomode mejor
 		}
-		this.vuelos=vuelos;
-		this.aerolinea = aerolinea;//Se asigna localmente el nombre de aerolínea recibido por parámetro.
-		this.alianza = alianza;//Se asigna localmente la Alianza recibida por parámetro.
+		this.aerolinea = aerolinea;//Se asigna localmente el nombre de aerolï¿½nea recibido por parï¿½metro.
+		this.alianza = alianza;//Se asigna localmente la Alianza recibida por parametro.
 	}
 	
 	
@@ -59,14 +42,10 @@ public class LineaAerea {
 		return iniciales;
 	}
 	
-	public String getIdLineaAerea() {
-		return idLineaAerea;
+	public int getId() {
+		return id;
 	}
-	
-	public void setIdLineaAerea(String idLineaAerea) {
-		this.idLineaAerea= idLineaAerea;
-	}
-	
+
 	public String getAerolinea() {
 		return aerolinea;
 	}
@@ -107,7 +86,9 @@ public class LineaAerea {
 			vuelos.remove(eliminado);
 		} else {
 			throw new RuntimeException("No existe el vuelo" + idVuelo);
+			
 		}
 	}
 	
 }
+//>>>>>>> branch 'master' of https://github.com/xMatiasMedina/TPFinal_ProgramacionAvanzada.git
