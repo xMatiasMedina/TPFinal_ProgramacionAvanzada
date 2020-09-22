@@ -1,6 +1,7 @@
 package mvc.views.loginscreens;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,8 +17,9 @@ public class UserRegisterPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param listener 
 	 */
-	public UserRegisterPanel() {
+	public UserRegisterPanel(ActionListener listener) {
 		this.setBackground(Color.DARK_GRAY);
 		this.setLayout(null);
 	}
