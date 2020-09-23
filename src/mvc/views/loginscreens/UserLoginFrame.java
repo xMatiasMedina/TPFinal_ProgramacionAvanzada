@@ -14,6 +14,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class UserLoginFrame extends JFrame {
 
@@ -35,11 +36,11 @@ public class UserLoginFrame extends JFrame {
 		contentPane.setLayout(new CardLayout(0, 0));
 		
 		login_panel = new UserLoginPanel(listener);
-		contentPane.add(login_panel);
+		contentPane.add(login_panel, "login_panel");
 		login_panel.startComponents();
 		
 		register_panel = new UserRegisterPanel(listener);
-		contentPane.add(register_panel);
+		contentPane.add(register_panel, "register_panel");
 		register_panel.startComponents();
 	}
 
@@ -52,6 +53,12 @@ public class UserLoginFrame extends JFrame {
 	}
 	
 	public void switchPanel() {
-		//register_panel.
+		CardLayout panels = (CardLayout) getContentPane().getLayout();
+		panels.show(getContentPane(),"register_panel");
+	}
+	
+	public void printPaneError(String message) {
+		JOptionPane.showMessageDialog(null, message , "Error",JOptionPane.ERROR_MESSAGE);
+
 	}
 }
