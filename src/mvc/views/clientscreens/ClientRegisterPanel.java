@@ -39,9 +39,13 @@ public class ClientRegisterPanel extends JPanel {
 	private JTextField calle_tf;
 	private JTextField altura_tf;
 	private JTextField codigo_tf;
-	private String[] provincias;//TODO implementar estos dos ultimos
+	private String[] provincias;
 	private String[] paises;
 	private JTextField otro_tf2;
+	private JComboBox paisEmision_cbox;
+	private JComboBox pais_cbox;
+	private JComboBox provincia_cbox;
+	private JTextField ciudad_tf;
 	
 	public ClientRegisterPanel(ActionListener listener, String[] paises, String[] provincias) {
 		this.setBackground(Color.DARK_GRAY);
@@ -156,7 +160,7 @@ public class ClientRegisterPanel extends JPanel {
 		this.add(otro_tf);
 		otro_tf.setColumns(10);
 		
-		JComboBox paisEmision_cbox = new JComboBox(paises);
+		paisEmision_cbox = new JComboBox(paises);
 		paisEmision_cbox.setBounds(34, 448, 130, 27);
 		paisEmision_cbox.addItemListener(new ItemListener() {
 			
@@ -296,7 +300,7 @@ public class ClientRegisterPanel extends JPanel {
 		pais_label.setBounds(578, 433, 61, 16);
 		this.add(pais_label);
 		
-		JComboBox provincia_cbox = new JComboBox(provincias);
+		provincia_cbox = new JComboBox(provincias);
 		provincia_cbox.setBounds(753, 447, 130, 27);
 		provincia_cbox.setVisible(false);
 		this.add(provincia_cbox);
@@ -313,7 +317,7 @@ public class ClientRegisterPanel extends JPanel {
 		this.add(otro_tf2);
 		otro_tf2.setColumns(10);
 		
-		JComboBox pais_cbox = new JComboBox(paises);
+		pais_cbox = new JComboBox(paises);
 		pais_cbox.setBounds(574, 447, 130, 27);
 		pais_cbox.addItemListener(new ItemListener() {
 			
@@ -344,5 +348,111 @@ public class ClientRegisterPanel extends JPanel {
 		codigo_tf.setBounds(574, 503, 130, 26);
 		this.add(codigo_tf);
 		codigo_tf.setColumns(10);
+		
+		JLabel ciudad_label = new JLabel("Ciudad");
+		ciudad_label.setForeground(Color.ORANGE);
+		ciudad_label.setBounds(756, 487, 98, 16);
+		this.add(ciudad_label);
+		
+		ciudad_tf = new JTextField();
+		ciudad_tf.setBounds(753, 503, 130, 26);
+		this.add(ciudad_tf);
+		ciudad_tf.setColumns(10);
+	}
+
+	public JTextField getNombre_tf() {
+		return nombre_tf;
+	}
+
+	public JTextField getApellido_tf() {
+		return apellido_tf;
+	}
+
+	public JTextField getDni_tf() {
+		return dni_tf;
+	}
+
+	public JTextField getNumeroPasaporte_tf() {
+		return numeroPasaporte_tf;
+	}
+
+	public JTextField getOtro_tf() {
+		return otro_tf;
+	}
+
+	public JTextField getAutoridad_tf() {
+		return autoridad_tf;
+	}
+
+	public JTextField getCuit_tf() {
+		return cuit_tf;
+	}
+
+	public JDateChooser getEmision_tf() {
+		return emision_tf;
+	}
+
+	public JDateChooser getVencimiento_tf() {
+		return vencimiento_tf;
+	}
+
+	public JDateChooser getNacimiento_tf() {
+		return nacimiento_tf;
+	}
+
+	public JTextField getMail_tf() {
+		return mail_tf;
+	}
+
+	public JTextField getPersonal_tf() {
+		return personal_tf;
+	}
+
+	public JTextField getCelular_tf() {
+		return celular_tf;
+	}
+
+	public JTextField getLaboral_tf() {
+		return laboral_tf;
+	}
+
+	public JTextField getCalle_tf() {
+		return calle_tf;
+	}
+
+	public JTextField getAltura_tf() {
+		return altura_tf;
+	}
+
+	public JTextField getCodigo_tf() {
+		return codigo_tf;
+	}
+
+	public String[] getProvincias() {
+		return provincias;
+	}
+
+	public String[] getPaises() {
+		return paises;
+	}
+
+	public JTextField getOtro_tf2() {
+		return otro_tf2;
+	}
+
+	public JComboBox getPaisEmision_cbox() {
+		return paisEmision_cbox;
+	}
+
+	public JComboBox getPais_cbox() {
+		return pais_cbox;
+	}
+
+	public JComboBox getProvincia_cbox() {
+		return provincia_cbox;
+	}
+
+	public JTextField getCiudad_tf() {
+		return ciudad_tf;
 	}
 }

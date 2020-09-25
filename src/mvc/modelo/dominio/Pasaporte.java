@@ -1,8 +1,9 @@
 package mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Pasaporte {
+public class Pasaporte implements Serializable{
 	
 	private int idPasaporte;
     private String numero; 

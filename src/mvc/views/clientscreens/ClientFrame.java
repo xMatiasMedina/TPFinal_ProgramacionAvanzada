@@ -72,8 +72,8 @@ public class ClientFrame extends JFrame {
 		JOptionPane.showMessageDialog(null, message , "Warning",JOptionPane.WARNING_MESSAGE);
 	}
 
-	public JPanel getRegisterPanel() {
-		return registerPanel;
+	public ClientRegisterPanel getRegisterPanel() {
+		return (ClientRegisterPanel) registerPanel;
 	}
 
 	public JTabbedPane getMainscreen() {

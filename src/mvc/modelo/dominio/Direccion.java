@@ -1,6 +1,8 @@
 package mvc.modelo.dominio;
 
-public class Direccion {
+import java.io.Serializable;
+
+public class Direccion implements Serializable {
 	
 	private int idDireccion;
 	private String calle;
@@ -13,7 +15,9 @@ public class Direccion {
 	
 	public Direccion() {}
 	
-	public Direccion(int idDireccion, String calle, String altura, String ciudad, String codigoPostal, Provincia provincia, Pais pais) {
+	public Direccion(int idDireccion, String calle, String altura, String ciudad,
+			String codigoPostal, Provincia provincia, Pais pais) {
+		
 		this.idDireccion = idDireccion;
 		this.calle = calle;
 		this.altura = altura;
@@ -21,7 +25,6 @@ public class Direccion {
 		this.codigoPostal = codigoPostal;
 		this.provincia = provincia;
 		this.pais = pais;
-		
 	}
 	
 	public int getIdDireccion() {

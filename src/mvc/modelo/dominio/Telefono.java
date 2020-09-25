@@ -1,6 +1,8 @@
 package mvc.modelo.dominio;
 
-public class Telefono {
+import java.io.Serializable;
+
+public class Telefono implements Serializable {
 	
 	private static int CONT = 0;
 	private final int idTelefono;

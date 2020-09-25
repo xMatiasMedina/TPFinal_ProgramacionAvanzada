@@ -1,6 +1,8 @@
 package mvc.modelo.dominio;
 
-public class Provincia {
+import java.io.Serializable;
+
+public class Provincia implements Serializable{
 	
 	private int idProvincia;
 	private String nombre;

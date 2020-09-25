@@ -66,6 +66,10 @@ public class Cliente implements Serializable {
 		return dni;
 	}
 
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
 	public String getEmail() {
 		return email;
 	}

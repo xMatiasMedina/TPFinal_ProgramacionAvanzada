@@ -1,6 +1,8 @@
 package mvc.modelo.dominio;
 
-public class PasajeroFrecuente {
+import java.io.Serializable;
+
+public class PasajeroFrecuente implements Serializable {
 
 	private String idPasajeroFrecuente;
 	private Alianza alianza;		
@@ -10,7 +12,7 @@ public class PasajeroFrecuente {
 	
 	/*
 		Este constructor por defecto se usa para instanciar en memoria un objeto sin conocer aun sus datos,
-		que pueden establecerse luego mediante los setters correspondientes, en particular el ID, que sera¡ generado
+		que pueden establecerse luego mediante los setters correspondientes, en particular el ID, que seraï¿½ generado
 		automaticamente por la base de datos
 	*/
 	public PasajeroFrecuente() {}
