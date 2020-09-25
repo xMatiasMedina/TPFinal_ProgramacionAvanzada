@@ -50,12 +50,10 @@ public class ClienteController implements ActionListener{
 				view.switchPanel(1);
 				break;
 		}
-		
 	}
 
 	private void registerClient() {
 		Cliente cliente = new Cliente();
-		
 	}
 
 }

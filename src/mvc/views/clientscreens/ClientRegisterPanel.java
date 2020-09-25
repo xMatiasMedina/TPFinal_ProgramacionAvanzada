@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.sun.security.ntlm.Client;
+import com.toedter.calendar.JDateChooser;
 
 public class ClientRegisterPanel extends JPanel {
 
@@ -28,9 +29,9 @@ public class ClientRegisterPanel extends JPanel {
 	private JTextField otro_tf;
 	private JTextField autoridad_tf;
 	private JTextField cuit_tf;
-	private JTextField emision_tf;
-	private JTextField vencimiento_tf;
-	private JTextField nacimiento_tf;
+	private JDateChooser emision_tf;
+	private JDateChooser vencimiento_tf;
+	private JDateChooser nacimiento_tf;
 	private JTextField mail_tf;
 	private JTextField personal_tf;
 	private JTextField celular_tf;
@@ -128,10 +129,9 @@ public class ClientRegisterPanel extends JPanel {
 		this.add(cuit_tf);
 		cuit_tf.setColumns(10);
 		
-		nacimiento_tf = new JTextField();
+		nacimiento_tf = new JDateChooser();
 		nacimiento_tf.setBounds(212, 226, 130, 26);
 		this.add(nacimiento_tf);
-		nacimiento_tf.setColumns(10);
 		
 		JLabel nacimiento_label = new JLabel("Fecha de Nacimiento");
 		nacimiento_label.setForeground(Color.ORANGE);
@@ -202,15 +202,13 @@ public class ClientRegisterPanel extends JPanel {
 		emision_label.setBounds(38, 544, 126, 16);
 		this.add(emision_label);
 		
-		emision_tf = new JTextField();
+		emision_tf = new JDateChooser();
 		emision_tf.setBounds(34, 560, 130, 26);
 		this.add(emision_tf);
-		emision_tf.setColumns(10);
 		
-		vencimiento_tf = new JTextField();
+		vencimiento_tf = new JDateChooser();
 		vencimiento_tf.setBounds(212, 560, 130, 26);
 		this.add(vencimiento_tf);
-		vencimiento_tf.setColumns(10);
 		
 		JLabel vencimiento_label = new JLabel("Fecha de Vencimiento");
 		vencimiento_label.setForeground(Color.ORANGE);
