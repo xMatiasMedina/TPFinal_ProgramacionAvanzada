@@ -1,6 +1,8 @@
 package mvc.modelo.dominio;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable{
 	
 	String username, password, type;
 

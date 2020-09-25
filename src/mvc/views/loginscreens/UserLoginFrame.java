@@ -59,6 +59,5 @@ public class UserLoginFrame extends JFrame {
 	
 	public void printPaneError(String message) {
 		JOptionPane.showMessageDialog(null, message , "Error",JOptionPane.ERROR_MESSAGE);
-
 	}
 }

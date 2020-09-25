@@ -1,23 +1,19 @@
-package mvc.modelo.dao.daoimplementations;
+package mvc.modelo.dao.daoimplementations.stream;
 
 import mvc.modelo.dao.idaos.ClienteDAO;
 import mvc.modelo.dominio.Cliente;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
 
-    private File file;
+    private String file;
     private List<Cliente> clientes;
-
-    /*
-    Si llegara a dar error en el jar me hice una libreria para solucionar este tipo de problemas.
-    Como crea un archivo nuevo si no existe en principio no deberia haber problema, aun asi como no es
-    un path absoluto no estoy seguro. (Con esto me refiero al JAR no a una compilacion de repositorio)
-     */
+     
     public ClienteDAOImpObjectStream() {
-        file = new File("resource/objectfiles/clientes.dat");
+        file = "resources/objectfiles/clientes.dat";
         readFile();
     }
 
@@ -57,15 +53,16 @@ public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
             e.printStackTrace();
         }catch (IOException e) {
             e.printStackTrace();
+            clientes = new ArrayList<Cliente>();
         }
     }
 
     @Override
-    public Cliente obtenerCliente(String dni) {
-        for (int i = 0; i < clientes.size(); i++)
-            if(clientes.get(i).getDni().equals(dni))
-                return clientes.get(i);
-        return null;
+    public Cliente obtenerCliente(int id) {
+    	for (Cliente cliente : clientes) 
+			if(cliente.getIdCliente().equals(""+id))
+				return cliente;
+		return null;
     }
 
     @Override
@@ -84,3 +81,4 @@ public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
 
     }
 }
+

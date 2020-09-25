@@ -56,13 +56,13 @@ public class UserRegisterPanel extends JPanel {
 			}
 		});
 		this.add(register_button);
-		JLabel username_label = new JLabel("Username");
+		JLabel username_label = new JLabel("New Username");
 		username_label.setForeground(Color.ORANGE);
-		username_label.setBounds(155, 37, 83, 16);
+		username_label.setBounds(155, 37, 98, 16);
 		this.add(username_label);
-		JLabel password_label = new JLabel("Password");
+		JLabel password_label = new JLabel("New Password");
 		password_label.setForeground(Color.ORANGE);
-		password_label.setBounds(155, 92, 61, 16);
+		password_label.setBounds(155, 92, 90, 16);
 		this.add(password_label);
 		JLabel type_label = new JLabel("Type");
 		type_label.setForeground(Color.ORANGE);

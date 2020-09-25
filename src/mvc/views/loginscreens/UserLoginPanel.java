@@ -49,6 +49,7 @@ public class UserLoginPanel extends JPanel {
 		
 		JButton login_bt = new JButton("Login");
 		login_bt.setBounds(258, 212, 117, 29);
+		login_bt.addActionListener(listener);
 		login_bt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -72,7 +73,13 @@ public class UserLoginPanel extends JPanel {
 		password_label.setForeground(Color.ORANGE);
 		password_label.setBounds(154, 118, 61, 16);
 		this.add(password_label);
-		
 	}
 
+	public JTextField getUser_tf() {
+		return user_tf;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
 }

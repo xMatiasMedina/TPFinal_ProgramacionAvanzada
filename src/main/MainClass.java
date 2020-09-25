@@ -1,5 +1,6 @@
 package main;
 
+import mvc.controllers.ClienteController;
 import mvc.controllers.UsuarioController;
 
 public class MainClass {
@@ -8,6 +9,7 @@ public class MainClass {
 		// TODO Auto-generated method stub
 		UsuarioController controller = new UsuarioController();
 		controller.startLogin();
+		
+	//new ClienteController(1);
 	}
-
 }

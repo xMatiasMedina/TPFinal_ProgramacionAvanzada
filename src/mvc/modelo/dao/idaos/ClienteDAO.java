@@ -5,6 +5,6 @@ import mvc.modelo.dominio.Cliente;
 public interface ClienteDAO {
     public boolean registrarCliente(Cliente cliente);
     public void modificarCliente(Cliente cliente);
-    public Cliente obtenerCliente(String dni);
+    public Cliente obtenerCliente(int id);
     public boolean eliminarCliente(Cliente cliente);
 }

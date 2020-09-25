@@ -1,8 +1,9 @@
 package mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Cliente {
+public class Cliente implements Serializable {
 	
     private String idCliente;
 	private String nombre;
@@ -17,14 +18,14 @@ public class Cliente {
 	private Direccion direccion;
 	
 	/*
-		COMENTARIO: Este constructor por defecto se usa para instanciar en memoria un objeto sin conocer aún sus datos,
-		que pueden establecerse luego mediante los setters correspondientes, en particular el ID, que será generado
-		automáticamente por la base de datos
+		COMENTARIO: Este constructor por defecto se usa para instanciar en memoria un objeto sin conocer aï¿½n sus datos,
+		que pueden establecerse luego mediante los setters correspondientes, en particular el ID, que serï¿½ generado
+		automï¿½ticamente por la base de datos
 	*/
 	public Cliente() {}
 	
-	// Este constructor se usa para instanciar en memoria un objeto DESPUÉS de haber
-    // agregado el cliente a la base de datos, que produce un ID automático
+	// Este constructor se usa para instanciar en memoria un objeto DESPUï¿½S de haber
+    // agregado el cliente a la base de datos, que produce un ID automï¿½tico
 	public Cliente(String idCliente, String nombre, String apellido, String dni, String email, String cuit,
 			Pasaporte pasaporte, Date fechaDeNacimiento, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
 			Direccion direccion) {
@@ -41,7 +42,6 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	
 	public String getIdCliente() {
 		return idCliente;
 	}

@@ -1,56 +1,56 @@
-package mvc.modelo.dao.daoimplementations;
+package mvc.modelo.dao.daoimplementations.stream;
 
-import mvc.modelo.dao.idaos.VueloDAO;
-import mvc.modelo.dominio.Vuelo;
+import mvc.modelo.dao.idaos.LineaAereaDAO;
+import mvc.modelo.dominio.LineaAerea;
 
 import java.io.*;
 import java.util.List;
 
-public class VueloDAOImpObjectStream implements VueloDAO, AutoCloseable {
+public class LineaAereaDAOImpObjectStream implements LineaAereaDAO,AutoCloseable {
 
     private File file;
-    private List<Vuelo> vuelos;
+    private List<LineaAerea> lineaAereas;
 
     /*
     Si llegara a dar error en el jar me hice una libreria para solucionar este tipo de problemas.
     Como crea un archivo nuevo si no existe en principio no deberia haber problema, aun asi como no es
     un path absoluto no estoy seguro. (Con esto me refiero al JAR no a una compilacion de repositorio)
      */
-    public VueloDAOImpObjectStream() {
-        file = new File("resource/objectfiles/vuelos.dat");
+    public LineaAereaDAOImpObjectStream() {
+        file = new File("resource/objectfiles/lineasaereas.dat");
         readFile();
     }
 
     @Override
-    public boolean registrarVuelo(Vuelo vuelo) {
-        boolean result = vuelos.add(vuelo);
+    public boolean registrarLAerea(LineaAerea lineaAerea) {
+        boolean result = lineaAereas.add(lineaAerea);
         updateFile();
         return result;
     }
 
     @Override
-    public void modificarVuelo(Vuelo vuelo) {
-        vuelos.forEach(a -> {
-            for (int i = 0; i < vuelos.size(); i++)
-                if(vuelos.get(i).getIdVuelo().equals(vuelo.getIdVuelo()))
-                    vuelos.add(i,vuelo);
+    public void modificarLAerea(LineaAerea lineaAerea) {
+        lineaAereas.forEach(a -> {
+            for (int i = 0; i < lineaAereas.size(); i++)
+                if(lineaAereas.get(i).getId()==lineaAerea.getId())
+                    lineaAereas.add(i,lineaAerea);
         });
         updateFile();
     }
 
     @Override
-    public Vuelo obtenerVuelo(String numeroVuelo) {
-        for (int i = 0; i < vuelos.size(); i++)
-            if(vuelos.get(i).getIdVuelo().equals(numeroVuelo))
-                return vuelos.get(i);
+    public LineaAerea obtenerLAerea(String nombre) {
+        for (int i = 0; i < lineaAereas.size(); i++)
+            if(lineaAereas.get(i).getAerolinea().equals(nombre))
+                return lineaAereas.get(i);
         return null;
     }
 
     @Override
-    public boolean eliminarVuelo(Vuelo vuelo) {
-        for (int i = 0; i < vuelos.size(); i++)
-            if(vuelos.get(i).getIdVuelo().equals(vuelo.getIdVuelo())) {
-                vuelos.remove(vuelo);
+    public boolean eliminarLAerea(LineaAerea lineaAerea) {
+        for (int i = 0; i < lineaAereas.size(); i++)
+            if(lineaAereas.get(i).getId()==lineaAerea.getId()) {
+                lineaAereas.remove(lineaAerea);
                 updateFile();
                 return true;
             }
@@ -59,7 +59,7 @@ public class VueloDAOImpObjectStream implements VueloDAO, AutoCloseable {
 
     private void updateFile() {
         try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(file))){
-            writer.writeObject(vuelos);
+            writer.writeObject(lineaAereas);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -69,7 +69,7 @@ public class VueloDAOImpObjectStream implements VueloDAO, AutoCloseable {
 
     private void readFile(){
         try(ObjectInputStream reader = new ObjectInputStream(new FileInputStream(file))) {
-            vuelos = (List<Vuelo>) reader.readObject();
+            lineaAereas = (List<LineaAerea>) reader.readObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

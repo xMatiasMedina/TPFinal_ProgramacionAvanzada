@@ -1,4 +1,4 @@
-package mvc.modelo.dao.daoimplementations;
+package mvc.modelo.dao.daoimplementations.stream;
 
 import mvc.modelo.dao.idaos.VentaDAO;
 import mvc.modelo.dominio.Cliente;
