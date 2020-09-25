@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import mvc.modelo.dao.idaos.ProvinciasDAO;
+import mvc.modelo.dominio.Provincia;
 
 //Singleton para facilitar uso continuo
 
@@ -18,13 +19,19 @@ public class ProvinciasDAOImpSQLServer implements ProvinciasDAO{
 	}
 
 	@Override
-	public List<String> getAll() {
-		return Arrays.asList("Neuquen","BA","Jujuy");
+	public List<String> getAllasString() {
+		return null;//Arrays.asList("Neuquen","BA","Jujuy");
 	}
 	
 	public static ProvinciasDAOImpSQLServer getInstance() {
 		if(instance == null)
 			instance = new ProvinciasDAOImpSQLServer();
 		return instance;
+	}
+
+	@Override
+	public Provincia getProvincia(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import mvc.modelo.dao.daoimplementations.sqlserver.PaisDAOImpSQLServer;
 import mvc.modelo.dao.daoimplementations.sqlserver.ProvinciasDAOImpSQLServer;
 import mvc.modelo.dao.daoimplementations.stream.ClienteDAOImpObjectStream;
+import mvc.modelo.dao.daoimplementations.stream.PaisDAOImpFileStream;
+import mvc.modelo.dao.daoimplementations.stream.ProvinciasDAOImpFileStream;
 import mvc.modelo.dao.factories.ClienteDAOFactory;
 import mvc.modelo.dao.factories.ImpType;
 import mvc.modelo.dao.idaos.ClienteDAO;
@@ -26,8 +28,8 @@ public class ClienteController implements ActionListener{
 	public ClienteController(int id) {
 		this.idclient = id;
 		view = new ClientFrame(this,
-				(String[]) PaisDAOImpSQLServer.getInstance().getAll().toArray(),
-				(String[]) ProvinciasDAOImpSQLServer.getInstance().getAll().toArray());
+				PaisDAOImpFileStream.getInstance().getAllasString().toArray(new String[5]),
+				ProvinciasDAOImpFileStream.getInstance().getAllasString().toArray(new String[23]));
 		view.setVisible(true);
 		dao = ClienteDAOFactory.getClienteDAOImp(ImpType.STREAM);
 		validateClient();
@@ -52,8 +54,8 @@ public class ClienteController implements ActionListener{
 	}
 
 	private void registerClient() {
-		//Cliente cliente = new Cliente();
-		System.out.println("Cliente Registrado");
+		Cliente cliente = new Cliente();
+		
 	}
 
 }
