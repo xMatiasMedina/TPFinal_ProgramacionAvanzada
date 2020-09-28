@@ -29,12 +29,12 @@ import javax.swing.JTable;
 
 public class ClientFrame extends JFrame {
 
-	private JPanel contentPane, registerPanel, accountPanel;
+	private JPanel contentPane, registerPanel, accountPanel, vuelosPanel, adquiridosPanel;
 	private JTabbedPane mainscreen;
 	private JTable table;
-	/**
-	 * Create the frame.
-	 */
+	private JTextField idVuelo_tf;
+	
+	
 	public ClientFrame(ActionListener listener, String[] paises, String[] provincias) {
 		setTitle("Client Session");
 		setResizable(false);
@@ -51,28 +51,15 @@ public class ClientFrame extends JFrame {
 		registerPanel = new ClientRegisterPanel(listener, paises, provincias);
 		contentPane.add(registerPanel, "register_panel");
 		
-		JPanel panel3 = new JPanel();
-		panel3.setBackground(Color.DARK_GRAY);
-		panel3.setLayout(null);
-		mainscreen.addTab("Adquiridos",UIManager.getIcon("OptionPane.informationIcon"), panel3, "Comprar vuelos");
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBackground(Color.DARK_GRAY);
-		mainscreen.addTab("Vuelos",UIManager.getIcon("OptionPane.informationIcon"), panel, "Comprar vuelos");
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(6, 202, 848, 404);
-		panel.add(scrollPane);
-		
-		VuelosTableModel model = new VuelosTableModel();
-		table = new JTable(model);
-		//model.addVuelo(new Vuelo("200 horas")); Prueba victoriosa
-		
-		scrollPane.setViewportView(table);
+		adquiridosPanel = new AdquiridosPanel();
+		mainscreen.addTab("Adquiridos",UIManager.getIcon("OptionPane.informationIcon"), adquiridosPanel, "Vuelos Adquiridos");
+		vuelosPanel = new ComprarVuelosPanel();
+		mainscreen.addTab("Vuelos",UIManager.getIcon("OptionPane.informationIcon"), vuelosPanel, "Comprar vuelos");
 		accountPanel = new ClientAccountScreen();
-		mainscreen.addTab("Mi Cuenta",UIManager.getIcon("OptionPane.informationIcon"), accountPanel, "Comprar vuelos");
+		mainscreen.addTab("Mi Cuenta",UIManager.getIcon("OptionPane.informationIcon"), accountPanel, "Configuracion de Cuenta");
 	}
 	
+	//Esto es SOLO para el CardBoard Layout, de ser necesario es facil agragar mas paneles
 	public void switchPanel(int i) {
 		CardLayout layout = (CardLayout) contentPane.getLayout();
 		switch(i) {
