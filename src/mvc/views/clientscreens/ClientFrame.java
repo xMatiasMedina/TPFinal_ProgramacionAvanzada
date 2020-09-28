@@ -5,24 +5,33 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import mvc.modelo.dominio.Vuelo;
+import mvc.views.vueloscreens.VuelosTableModel;
+
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.Font;
+import java.awt.Scrollbar;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.CardLayout;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 
 public class ClientFrame extends JFrame {
 
-	private JPanel contentPane, registerPanel;
+	private JPanel contentPane, registerPanel, accountPanel;
 	private JTabbedPane mainscreen;
+	private JTable table;
 	/**
 	 * Create the frame.
 	 */
@@ -43,11 +52,25 @@ public class ClientFrame extends JFrame {
 		contentPane.add(registerPanel, "register_panel");
 		
 		JPanel panel3 = new JPanel();
+		panel3.setBackground(Color.DARK_GRAY);
+		panel3.setLayout(null);
 		mainscreen.addTab("Adquiridos",UIManager.getIcon("OptionPane.informationIcon"), panel3, "Comprar vuelos");
 		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(Color.DARK_GRAY);
 		mainscreen.addTab("Vuelos",UIManager.getIcon("OptionPane.informationIcon"), panel, "Comprar vuelos");
-		JPanel panel2 = new JPanel();
-		mainscreen.addTab("Mi Cuenta",UIManager.getIcon("OptionPane.informationIcon"), panel2, "Comprar vuelos");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(6, 202, 848, 404);
+		panel.add(scrollPane);
+		
+		VuelosTableModel model = new VuelosTableModel();
+		table = new JTable(model);
+		//model.addVuelo(new Vuelo("200 horas")); Prueba victoriosa
+		
+		scrollPane.setViewportView(table);
+		accountPanel = new ClientAccountScreen();
+		mainscreen.addTab("Mi Cuenta",UIManager.getIcon("OptionPane.informationIcon"), accountPanel, "Comprar vuelos");
 	}
 	
 	public void switchPanel(int i) {
@@ -79,5 +102,4 @@ public class ClientFrame extends JFrame {
 	public JTabbedPane getMainscreen() {
 		return mainscreen;
 	}
-
 }

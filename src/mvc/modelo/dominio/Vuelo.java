@@ -8,7 +8,7 @@ a. Las primeras 2 letras del nombre de la aerolinea, en el caso que sea un nombr
 compuesto (Ej. Aerolineas Argentinas) se formarian con la primer letra de los primeras
 2 palabras (en el ejemplo: AA)
 b. Un guion medio (-)
-c. El valor numero del nï¿½mero con una longitud de 4 dïgitos -> Esto es un metodo
+c. El valor numero del nï¿½mero con una longitud de 4 dï¿½gitos -> Esto es un metodo
 d. Ejemplo: AR-1234
 */
 
@@ -108,6 +108,16 @@ public class Vuelo {
 		public int getDisponibles() {
 			return cantidadDeAsientos - vendidos;
 		}
+
+		public int getVendidos() {
+			return vendidos;
+		}
+
+		public void setVendidos(int vendidos) {
+			this.vendidos = vendidos;
+		}
+		
+		
 }
 
 
