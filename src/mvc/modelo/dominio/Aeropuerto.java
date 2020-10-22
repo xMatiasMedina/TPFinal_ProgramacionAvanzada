@@ -38,6 +38,10 @@ public class Aeropuerto {
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
+	
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
+	}
 }
 	
 
