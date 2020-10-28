@@ -65,6 +65,10 @@ public class UsuarioController implements ActionListener {
 		}
 	}
 	
+	public void deleteUser(int idUser) {
+		dao = UsuarioDAOFactory.getUsuarioDAOImp(ImpType.STREAM);
+		dao.deleteUser(dao.getUsuario(idUser));
+	}
 	
 	private void redirect(String itype, @Nullable int id) {
 		this.view.setVisible(false);

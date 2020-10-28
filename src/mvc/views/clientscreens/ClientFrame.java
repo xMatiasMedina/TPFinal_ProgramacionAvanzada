@@ -55,7 +55,7 @@ public class ClientFrame extends JFrame {
 		mainscreen.addTab("Adquiridos",UIManager.getIcon("OptionPane.informationIcon"), adquiridosPanel, "Vuelos Adquiridos");
 		vuelosPanel = new ComprarVuelosPanel();
 		mainscreen.addTab("Vuelos",UIManager.getIcon("OptionPane.informationIcon"), vuelosPanel, "Comprar vuelos");
-		accountPanel = new ClientAccountScreen();
+		accountPanel = new ClientAccountScreen(listener);
 		mainscreen.addTab("Mi Cuenta",UIManager.getIcon("OptionPane.informationIcon"), accountPanel, "Configuracion de Cuenta");
 	}
 	
