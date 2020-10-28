@@ -51,8 +51,21 @@ public class ClienteController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case "RDone_bt":
-				registerClient();
+				if(dao.obtenerCliente(this.idclient) == null) 
+					dao.registrarCliente(getClient());
+				else 
+					dao.modificarCliente(getClient());
 				view.switchPanel(1);
+				break;
+			case "Modify_bt":
+				view.switchPanel(0);
+				break;
+			case "Delete_bt":
+				dao.eliminarCliente(dao.obtenerCliente(idclient));
+				UsuarioController scontroller = new UsuarioController();
+				scontroller.deleteUser(idclient);
+				view.setVisible(false);
+				scontroller.startLogin();
 				break;
 		}
 	}
@@ -60,7 +73,7 @@ public class ClienteController implements ActionListener{
 	//TODO Telefono no tenia seters, si lo quieren cambiar o 
 	//mejorar en cuestiones de diseno tengan en cuenta que hay que cambiar todo esto.
 	//Este metodo fue eterno /\ En stream como se puede ver no tienen id los objetos
-	private void registerClient() {
+	private Cliente getClient() {
 		ClientRegisterPanel register = view.getRegisterPanel();
 		Pasaporte pasaporte = new Pasaporte();
 		pasaporte.setNumero(register.getNumeroPasaporte_tf().getText());
@@ -101,6 +114,6 @@ public class ClienteController implements ActionListener{
 		cliente.setFechaDeNacimiento(register.getNacimiento_tf().getDate());
 		cliente.setTelefono(telefono);
 		cliente.setDireccion(direccion);
-		dao.registrarCliente(cliente);
+		return cliente;
 	}
 }

@@ -37,6 +37,8 @@ public class UsuarioDAOImpObjectStream implements UsuarioDAO, AutoCloseable{
 		usuarios.add(usuario);
 		updateFile();
 	}
+	
+	
 
 	@Override
 	public List<Usuario> getAll() {
@@ -72,4 +74,21 @@ public class UsuarioDAOImpObjectStream implements UsuarioDAO, AutoCloseable{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void deleteUser(Usuario usuario) {
+		for (int i = 0; i < usuarios.size(); i++) 
+			if(usuario.getUsername().equals(usuarios.get(i).getUsername()))
+				usuarios.remove(i);
+		updateFile();
+	}
+
+	@Override
+	public Usuario getUsuario(int idUser) {
+		for (Usuario usuario : usuarios) 
+			if(usuario.getType().split("-")[1].equals(idUser+""))
+				return usuario;
+		return null;
+	}
+	
 }

@@ -12,7 +12,8 @@ import mvc.modelo.dominio.Usuario;
 
 public interface UsuarioDAO {
 	public Usuario getUsuario(String userNombre);
+	public Usuario getUsuario(int idUser);
 	public void addUser(Usuario usuario);
+	public void deleteUser(Usuario usuario);
 	public List<Usuario> getAll();
-	
 }
