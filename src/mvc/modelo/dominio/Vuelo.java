@@ -14,7 +14,9 @@ d. Ejemplo: AR-1234
 
 public class Vuelo {
 		private static int CONT = 1000;
-		private final String idVuelo;
+		private String idVuelo;
+		private LineaAerea lineaAerea;
+		private String nroVuelo;
 	    private int cantidadDeAsientos;
 	    private Aeropuerto aeropuertoDeSalida;
 	    private Aeropuerto aeropuertoDeLlegada;
@@ -22,14 +24,17 @@ public class Vuelo {
 	    private Date dateLlegada; //fecha y hora de llegada
 	    private String tiempo; //tiempo de vuelo
 	    private int vendidos;
+	    
+	    public Vuelo() {}
 		
-		public Vuelo(LineaAerea aerolinea, int cantidadDeAsientos, Aeropuerto aeropuertoDeSalida, Aeropuerto aeropuertoDeLlegada,
+		public Vuelo(String nroVuelo, LineaAerea aerolinea, int cantidadDeAsientos, Aeropuerto aeropuertoDeSalida, Aeropuerto aeropuertoDeLlegada,
 				Date dateSalida, Date dateLlegada, String tiempo) {
 					
 			int id = ++CONT;
 
 			idVuelo = aerolinea.getIniciales() + "-" + id; //Lo arregle
-				
+			this.nroVuelo = nroVuelo;
+			this.lineaAerea = aerolinea;
 			this.cantidadDeAsientos = cantidadDeAsientos;
 			this.aeropuertoDeSalida = aeropuertoDeSalida;
 			this.aeropuertoDeLlegada = aeropuertoDeLlegada;
@@ -40,6 +45,30 @@ public class Vuelo {
 			vendidos = 0;
 		}
 		
+		public LineaAerea getLineaAerea() {
+			return lineaAerea;
+		}
+
+		public void setLineaAerea(LineaAerea lineaAerea) {
+			this.lineaAerea = lineaAerea;
+		}
+
+		public String getNroVuelo() {
+			return nroVuelo;
+		}
+
+		public void setNroVuelo(String nroVuelo) {
+			this.nroVuelo = nroVuelo;
+		}
+
+		public int getVendidos() {
+			return vendidos;
+		}
+
+		public void setVendidos(int vendidos) {
+			this.vendidos = vendidos;
+		}
+
 		public String getIdVuelo() {
 			return idVuelo;
 		}
@@ -94,6 +123,9 @@ public class Vuelo {
 			this.tiempo = tiempo;
 		}
 		
+		public void setIdVuelo(String idVuelo) {
+			this.idVuelo = idVuelo;
+		}
 		// permite buscar vuelos a partir de su identificador
 		// determina el criterio para comparar esta instancia (this) con otra instancia (otro)
 		
