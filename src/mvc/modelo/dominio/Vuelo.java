@@ -139,17 +139,7 @@ public class Vuelo {
 		
 		public int getDisponibles() {
 			return cantidadDeAsientos - vendidos;
-		}
-
-		public int getVendidos() {
-			return vendidos;
-		}
-
-		public void setVendidos(int vendidos) {
-			this.vendidos = vendidos;
-		}
-		
-		
+		}	
 }
 
 
