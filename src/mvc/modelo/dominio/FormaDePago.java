@@ -3,10 +3,11 @@ package mvc.modelo.dominio;
 public enum FormaDePago {
 	
 		CONTADO_EFECTIVO("Contado efectivo"),
-		TARJETA_DEBITO("Tarjeta de Débito"),
-		TARJETA_CREDITO("Tarjeta de Crédito");
+		TARJETA_DEBITO("Tarjeta de Debito"),
+		TARJETA_CREDITO("Tarjeta de Credito");
 			
-		public final String value;
+		private final String value;
+		private String detalle;
 		
 		private FormaDePago(String value) {
 			this.value = value;
@@ -16,14 +17,28 @@ public enum FormaDePago {
 			if(nombre.equals("Contado efectivo")) {
 				return CONTADO_EFECTIVO;
 			}
-			if(nombre.equals("Tarjeta de Débito")) {
+			if(nombre.equals("Tarjeta de Debito")) {
 				return TARJETA_DEBITO;
 			}
-			if(nombre.equals("Tarjeta de Crédito")) {
+			if(nombre.equals("Tarjeta de Credito")) {
 				return TARJETA_CREDITO;
 			}
 			return null;
 		}
+
+		public String getValue() {
+			return value;
+		}
+
+		public String getDetalle() {
+			return detalle;
+		}
+
+		public void setDetalle(String detalle) {
+			this.detalle = detalle;
+		}
+		
+		
 
 	}
 

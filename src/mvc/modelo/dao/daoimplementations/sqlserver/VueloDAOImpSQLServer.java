@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import mvc.modelo.dao.idaos.VueloDAO;
 import mvc.modelo.dominio.Aeropuerto;
@@ -184,6 +185,13 @@ public class VueloDAOImpSQLServer implements VueloDAO {
         }
         return exito;
     }
+
+//TODO implementar
+@Override
+public List<Vuelo> getAll() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
 
 

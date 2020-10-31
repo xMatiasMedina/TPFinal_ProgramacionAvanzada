@@ -30,10 +30,7 @@ import javax.swing.JTable;
 public class ClientFrame extends JFrame {
 
 	private JPanel contentPane, registerPanel, accountPanel, vuelosPanel, adquiridosPanel;
-	private JTabbedPane mainscreen;
-	private JTable table;
-	private JTextField idVuelo_tf;
-	
+	private JTabbedPane mainscreen;	
 	
 	public ClientFrame(ActionListener listener, String[] paises, String[] provincias) {
 		setTitle("Client Session");
@@ -89,4 +86,14 @@ public class ClientFrame extends JFrame {
 	public JTabbedPane getMainscreen() {
 		return mainscreen;
 	}
+
+	public ComprarVuelosPanel getVuelosPanel() {
+		return (ComprarVuelosPanel) vuelosPanel;
+	}
+
+	public JPanel getAdquiridosPanel() {
+		return adquiridosPanel;
+	}
+	
+	
 }

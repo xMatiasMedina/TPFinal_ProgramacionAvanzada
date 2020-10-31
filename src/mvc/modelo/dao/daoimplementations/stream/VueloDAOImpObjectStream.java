@@ -83,4 +83,12 @@ public class VueloDAOImpObjectStream implements VueloDAO, AutoCloseable {
     public void close() throws Exception {
 
     }
+
+	@Override
+	public List<Vuelo> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+    
 }

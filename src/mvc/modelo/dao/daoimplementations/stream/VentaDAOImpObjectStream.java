@@ -21,6 +21,7 @@ public class VentaDAOImpObjectStream implements VentaDAO, AutoCloseable {
      */
     public VentaDAOImpObjectStream() {
         file = new File("resource/objectfiles/ventas.dat");
+        ventas = new ArrayList<Venta>();
         readFile();
     }
 
@@ -39,15 +40,6 @@ public class VentaDAOImpObjectStream implements VentaDAO, AutoCloseable {
                     ventas.add(i,venta);
         });
         updateFile();
-    }
-
-    @Override
-    public List<Venta> obtenerVentas(Cliente cliente) {
-        List<Venta> result = new ArrayList<>();
-        for (int i = 0; i < ventas.size(); i++)
-            if(ventas.get(i).getCliente().getDni().equals(cliente.getDni()))
-                result.add(ventas.get(i));
-        return result;
     }
 
     @Override
@@ -87,4 +79,17 @@ public class VentaDAOImpObjectStream implements VentaDAO, AutoCloseable {
     public void close() throws Exception {
 
     }
+
+	@Override
+	public Venta obtenerVenta(String idVenta) {
+		for (int i = 0; i < ventas.size(); i++) 
+			if(ventas.get(i).getIdVenta().equals(idVenta))
+				return ventas.get(i);
+		return null;
+	}
+
+	@Override
+	public List<Venta> obtenerVentas() {
+		return ventas;
+	}
 }

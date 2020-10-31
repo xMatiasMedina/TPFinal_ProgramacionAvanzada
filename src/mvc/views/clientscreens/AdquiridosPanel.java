@@ -1,6 +1,7 @@
 package mvc.views.clientscreens;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,12 +10,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import mvc.views.ventascreens.VentasTableModel;
 import mvc.views.vueloscreens.VuelosTableModel;
 
 public class AdquiridosPanel extends JPanel {
 
 	private JTable table;
 	private JTextField idVuelo_tf;
+	private JButton delete_bt;
 
 	
 	public AdquiridosPanel() {
@@ -28,7 +31,7 @@ public class AdquiridosPanel extends JPanel {
 		scrollPane.setBounds(6, 6, 848, 493);
 		this.add(scrollPane);
 		
-		VuelosTableModel model = new VuelosTableModel();
+		VentasTableModel model = new VentasTableModel();
 		table = new JTable(model);
 		scrollPane.setViewportView(table);
 		
@@ -44,7 +47,26 @@ public class AdquiridosPanel extends JPanel {
 		
 		JButton delete_bt = new JButton("Delete");
 		delete_bt.setBounds(215, 556, 117, 29);
+		delete_bt.setActionCommand("Delete_bt");
 		this.add(delete_bt);
 	}
+	
+	public void setListener(ActionListener listener) {
+		delete_bt.addActionListener(listener);
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public JTextField getIdVuelo_tf() {
+		return idVuelo_tf;
+	}
+
+	public JButton getDelete_bt() {
+		return delete_bt;
+	}
+	
+	
 
 }

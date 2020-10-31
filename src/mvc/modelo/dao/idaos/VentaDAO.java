@@ -8,6 +8,7 @@ import java.util.List;
 public interface VentaDAO {
     public boolean registrarVenta(Venta venta);
     public void modificarVenta(Venta venta);
-    public List<Venta> obtenerVentas(Cliente cliente);
+    public Venta obtenerVenta(String idVenta);
     public boolean eliminarVenta(Venta venta);
+    public List<Venta> obtenerVentas();
 }

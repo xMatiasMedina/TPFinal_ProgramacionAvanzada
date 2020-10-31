@@ -9,7 +9,6 @@ public class MainClass {
 		// TODO Auto-generated method stub
 		UsuarioController controller = new UsuarioController();
 		controller.startLogin();
-		
 	//new ClienteController(1);
 	}
 }

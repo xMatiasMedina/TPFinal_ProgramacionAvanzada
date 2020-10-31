@@ -20,6 +20,16 @@ public class VuelosTableModel extends AbstractTableModel {
 				, "Tiempo","Vendidos"};
 		
 	}
+	
+	public void cleanTable() {
+		vuelos = new ArrayList<>();
+	}
+	
+	public void remove(String id) {
+		for (int i = 0; i < vuelos.size(); i++) 
+			if(vuelos.get(i).getIdVuelo().equals(id))
+				vuelos.remove(i);
+	}
 
 	@Override
 	public int getRowCount() {
@@ -41,6 +51,10 @@ public class VuelosTableModel extends AbstractTableModel {
 	public void addVuelo(Vuelo vuelo) {
 		vuelos.add(vuelo);
 	}
+	
+	public void addVuelo(List<Vuelo> vuelos) {
+		this.vuelos.addAll(vuelos);
+	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
@@ -58,5 +72,12 @@ public class VuelosTableModel extends AbstractTableModel {
 			case 7: return vuelos.get(rowIndex).getVendidos();
 			default: return null;
 		}
+	}
+	
+	public Vuelo getVuelo(String id) {
+		for (Vuelo vuelo : vuelos) 
+			if(vuelo.getIdVuelo().equals(id))
+				return vuelo;
+		return null;
 	}
 }

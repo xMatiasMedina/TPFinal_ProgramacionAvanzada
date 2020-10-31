@@ -37,6 +37,8 @@ public class ClienteController implements ActionListener{
 				ProvinciasDAOImpFileStream.getInstance().getAllasString().toArray(new String[23]));
 		view.setVisible(true);
 		dao = ClienteDAOFactory.getClienteDAOImp(ImpType.STREAM);
+		new VentaController(id+"",view.getVuelosPanel(), view.getAdquiridosPanel());
+		new VueloController(view.getVuelosPanel().getTable());
 		validateClient();
 	}
 
