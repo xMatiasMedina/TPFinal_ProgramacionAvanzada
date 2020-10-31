@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -45,7 +46,7 @@ public class AdquiridosPanel extends JPanel {
 		idVuelo_label.setBounds(36, 539, 61, 16);
 		this.add(idVuelo_label);
 		
-		JButton delete_bt = new JButton("Delete");
+		delete_bt = new JButton("Delete");
 		delete_bt.setBounds(215, 556, 117, 29);
 		delete_bt.setActionCommand("Delete_bt");
 		this.add(delete_bt);
@@ -67,6 +68,8 @@ public class AdquiridosPanel extends JPanel {
 		return delete_bt;
 	}
 	
-	
+	public void printWarning(String message) {
+		JOptionPane.showMessageDialog(null, message, "Warning", JOptionPane.WARNING_MESSAGE);
+	}
 
 }

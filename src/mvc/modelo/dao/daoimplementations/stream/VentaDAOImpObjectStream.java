@@ -20,7 +20,7 @@ public class VentaDAOImpObjectStream implements VentaDAO, AutoCloseable {
     un path absoluto no estoy seguro. (Con esto me refiero al JAR no a una compilacion de repositorio)
      */
     public VentaDAOImpObjectStream() {
-        file = new File("resource/objectfiles/ventas.dat");
+        file = new File("resources/objectfiles/ventas.dat");
         ventas = new ArrayList<Venta>();
         readFile();
     }

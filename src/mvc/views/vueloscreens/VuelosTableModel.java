@@ -53,7 +53,8 @@ public class VuelosTableModel extends AbstractTableModel {
 	}
 	
 	public void addVuelo(List<Vuelo> vuelos) {
-		this.vuelos.addAll(vuelos);
+		if(vuelos != null)
+			this.vuelos.addAll(vuelos);
 	}
 
 	@Override

@@ -37,9 +37,9 @@ public class ClienteController implements ActionListener{
 				ProvinciasDAOImpFileStream.getInstance().getAllasString().toArray(new String[23]));
 		view.setVisible(true);
 		dao = ClienteDAOFactory.getClienteDAOImp(ImpType.STREAM);
+		validateClient();
 		new VentaController(id+"",view.getVuelosPanel(), view.getAdquiridosPanel());
 		new VueloController(view.getVuelosPanel().getTable());
-		validateClient();
 	}
 
 	public void validateClient() {
@@ -97,9 +97,12 @@ public class ClienteController implements ActionListener{
 				PaisDAOImpFileStream.getInstance().getPais(register.getOtro_tf2().getText()):
 					PaisDAOImpFileStream.getInstance().getPais(pais2));//Validacion de otro 2
 		if(!"Otro".equals(pais2))
-			direccion.setProvincia
-			(ProvinciasDAOImpFileStream.getInstance().getProvincia
-					((String) register.getProvincia_cbox().getSelectedItem()));
+			if("Argentina".equals(pais2))
+				direccion.setProvincia
+				(ProvinciasDAOImpFileStream.getInstance().getProvincia
+						((String) register.getProvincia_cbox().getSelectedItem()));
+			else
+				direccion.setProvincia(new Provincia(-1, register.getOtro_tf2().getText()));//Esto es Estados de paises extranjeros
 		Telefono telefono = new Telefono(
 				register.getPersonal_tf().getText(),
 				register.getCelular_tf().getText(),

@@ -324,17 +324,19 @@ public class ClientRegisterPanel extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getItem().equals("Argentina")) {
+					otro_tf2.setVisible(false);
+					provincia_label.setText("Provincia");
 					provincia_label.setVisible(true);
 					provincia_cbox.setVisible(true);
-				}
-				else {
+				}else if(e.getItem().equals("Otro")) {
 					provincia_label.setVisible(false);
-					provincia_cbox.setVisible(false);
-				}
-				if(e.getItem().equals("Otro"))
 					otro_tf2.setVisible(true);
-				else
-					otro_tf2.setVisible(false);
+				}else {
+					otro_tf2.setVisible(true);
+					provincia_label.setText("Estado");
+					provincia_label.setVisible(true);
+					provincia_cbox.setVisible(false);
+				}	
 			}
 		});
 		this.add(pais_cbox);

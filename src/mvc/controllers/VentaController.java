@@ -8,7 +8,10 @@ import java.util.stream.Collectors;
 import javax.swing.JPanel;
 
 import mvc.modelo.bll.ClienteBLL;
+import mvc.modelo.bll.PasaporteBLL;
+import mvc.modelo.bll.VueloBLL;
 import mvc.modelo.dao.daoimplementations.sqlserver.VueloDAOImpSQLServer;
+import mvc.modelo.dao.daoimplementations.stream.VentaDAOImpObjectStream;
 import mvc.modelo.dao.factories.ClienteDAOFactory;
 import mvc.modelo.dao.factories.ImpType;
 import mvc.modelo.dao.idaos.ClienteDAO;
@@ -29,6 +32,7 @@ public class VentaController implements ActionListener {
 	private VentaDAO dao;
 	
 	public VentaController(String clienteid, JPanel comprarVuelosPanel, JPanel adquiridosPanel) {
+		dao = new VentaDAOImpObjectStream();//TODO agregar cuando sea implementado
 		this.adquiridosPanel = adquiridosPanel;
 		this.comprarVuelosPanel = comprarVuelosPanel;
 		ComprarVuelosPanel comprarview = (ComprarVuelosPanel) comprarVuelosPanel;
@@ -40,35 +44,50 @@ public class VentaController implements ActionListener {
 		(dao.obtenerVentas().stream().filter
 				(a -> a.getCliente().getIdCliente().equals(clienteid)).collect(Collectors.toList()));
 		this.idcliente = idcliente;
-		dao = null;//TODO agregar cuando sea implementado
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 		case "Comprar_bt":
-			Cliente cliente = ClienteDAOFactory.getClienteDAOImp(ImpType.SQLSERVER).obtenerCliente(Integer.parseInt(idcliente));
 			ComprarVuelosPanel comprarview = (ComprarVuelosPanel) comprarVuelosPanel;
-			if(new ClienteBLL().mayorde18(cliente)) {
+			try {
+				Cliente cliente = ClienteDAOFactory.getClienteDAOImp(ImpType.SQLSERVER).obtenerCliente(Integer.parseInt(idcliente));
 				Vuelo vuelo = new VueloDAOImpSQLServer().obtenerVuelo(comprarview.getIdVuelo_tf().getText());
-				FormaDePago formadepago = FormaDePago.get((String) comprarview.getFormadePago_cbox().getSelectedItem());
-				if(FormaDePago.TARJETA_CREDITO.equals(formadepago)) {
-					formadepago.setDetalle((String) comprarview.getCuotas_cbox().getSelectedItem());
-					dao.registrarVenta(new Venta(vuelo,vuelo.getLineaAerea(),cliente,new Date(),formadepago));
-				}else {
-					dao.registrarVenta(new Venta(vuelo,vuelo.getLineaAerea(),cliente,new Date(),formadepago));
-				}
-			}else 
-				comprarview.printWarning("Debes ser mayor de 18 para realizar compras");
+				if(new PasaporteBLL().validar(cliente.getPasaporte(), vuelo)) {
+					if(new VueloBLL().disponible(vuelo, new VentaDAOImpObjectStream().obtenerVentas())) {//TODO revisar cuando haya data base
+						if(new ClienteBLL().mayorde18(cliente)) {
+							FormaDePago formadepago = FormaDePago.get((String) comprarview.getFormadePago_cbox().getSelectedItem());
+							if(FormaDePago.TARJETA_CREDITO.equals(formadepago)) {
+								formadepago.setDetalle((String) comprarview.getCuotas_cbox().getSelectedItem());
+								dao.registrarVenta(new Venta(vuelo,vuelo.getLineaAerea(),cliente,new Date(),formadepago));
+							}else {
+								dao.registrarVenta(new Venta(vuelo,vuelo.getLineaAerea(),cliente,new Date(),formadepago));
+							}
+						}else 
+							comprarview.printWarning("Debes ser mayor de 18 para realizar compras");
+					}else
+						comprarview.printWarning("No hay espacio disponible en este vuelo");
+				}else
+					comprarview.printWarning("Pasaporte no valido");
+			}catch(NumberFormatException e1) {
+				e1.printStackTrace();
+				comprarview.printWarning("Input no valido");
+			}
 			break;
 		case "Delete_bt":
 			AdquiridosPanel view = (AdquiridosPanel) adquiridosPanel;
-			Venta ventaEliminada = dao.obtenerVenta(view.getIdVuelo_tf().getText());
-			if(ventaEliminada != null) {
-				dao.eliminarVenta(ventaEliminada);
-				((VentasTableModel) view.getTable().getModel()).remove(ventaEliminada.getIdVenta());
+			try {
+				Venta ventaEliminada = dao.obtenerVenta(view.getIdVuelo_tf().getText());
+				if(ventaEliminada != null) {
+					dao.eliminarVenta(ventaEliminada);
+					((VentasTableModel) view.getTable().getModel()).remove(ventaEliminada.getIdVenta());
+				}
+			}catch(NumberFormatException e1) {
+				e1.printStackTrace();
+				view.printWarning("Input no valido");
 			}
 			break;
-	}	
+		}	
 	}
 }
