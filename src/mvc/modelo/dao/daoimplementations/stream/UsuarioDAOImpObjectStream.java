@@ -90,5 +90,4 @@ public class UsuarioDAOImpObjectStream implements UsuarioDAO, AutoCloseable{
 				return usuario;
 		return null;
 	}
-	
 }

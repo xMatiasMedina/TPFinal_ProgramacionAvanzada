@@ -17,7 +17,7 @@ import mvc.views.vueloscreens.VuelosTableModel;
 public class AdquiridosPanel extends JPanel {
 
 	private JTable table;
-	private JTextField idVuelo_tf;
+	private JTextField idVenta_tf;
 	private JButton delete_bt;
 
 	
@@ -36,12 +36,12 @@ public class AdquiridosPanel extends JPanel {
 		table = new JTable(model);
 		scrollPane.setViewportView(table);
 		
-		idVuelo_tf = new JTextField();
-		idVuelo_tf.setBounds(36, 556, 130, 26);
-		this.add(idVuelo_tf);
-		idVuelo_tf.setColumns(10);
+		idVenta_tf = new JTextField();
+		idVenta_tf.setBounds(36, 556, 130, 26);
+		this.add(idVenta_tf);
+		idVenta_tf.setColumns(10);
 		
-		JLabel idVuelo_label = new JLabel("idVuelo");
+		JLabel idVuelo_label = new JLabel("idVenta");
 		idVuelo_label.setForeground(Color.ORANGE);
 		idVuelo_label.setBounds(36, 539, 61, 16);
 		this.add(idVuelo_label);
@@ -60,8 +60,8 @@ public class AdquiridosPanel extends JPanel {
 		return table;
 	}
 
-	public JTextField getIdVuelo_tf() {
-		return idVuelo_tf;
+	public JTextField getIdVenta_tf() {
+		return idVenta_tf;
 	}
 
 	public JButton getDelete_bt() {

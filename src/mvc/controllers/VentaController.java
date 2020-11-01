@@ -78,7 +78,7 @@ public class VentaController implements ActionListener {
 		case "Delete_bt":
 			AdquiridosPanel view = (AdquiridosPanel) adquiridosPanel;
 			try {
-				Venta ventaEliminada = dao.obtenerVenta(view.getIdVuelo_tf().getText());
+				Venta ventaEliminada = dao.obtenerVenta(view.getIdVenta_tf().getText());
 				if(ventaEliminada != null) {
 					dao.eliminarVenta(ventaEliminada);
 					((VentasTableModel) view.getTable().getModel()).remove(ventaEliminada.getIdVenta());
