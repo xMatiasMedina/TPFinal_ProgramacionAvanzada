@@ -6,7 +6,7 @@ import mvc.modelo.dominio.Provincia;
 
 public interface ProvinciasDAO {
 	
-	public Provincia getProvincia(String nombre);
+	public Provincia getProvincia(String id);
 	
 	public List<String> getAllasString();
 }

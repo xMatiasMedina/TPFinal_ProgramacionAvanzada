@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Direccion implements Serializable {
 	
-	private int idDireccion;
+	private String idDireccion;
 	private String calle;
 	private String altura;
 	private String ciudad;
@@ -15,7 +15,7 @@ public class Direccion implements Serializable {
 	
 	public Direccion() {}
 	
-	public Direccion(int idDireccion, String calle, String altura, String ciudad,
+	public Direccion(String idDireccion, String calle, String altura, String ciudad,
 			String codigoPostal, Provincia provincia, Pais pais) {
 		
 		this.idDireccion = idDireccion;
@@ -27,7 +27,13 @@ public class Direccion implements Serializable {
 		this.pais = pais;
 	}
 	
-	public int getIdDireccion() {
+	
+	
+	public void setIdDireccion(String idDireccion) {
+		this.idDireccion = idDireccion;
+	}
+
+	public String getIdDireccion() {
 		return idDireccion;
 	}
 	public String getCalle() {

@@ -13,7 +13,6 @@ import util.Connect;
 
 public class ClienteDAOImpSQLServer implements ClienteDAO {
 	
-	
 	@Override
 	public boolean registrarCliente(Cliente c) {
 		boolean exito = false;
@@ -34,7 +33,7 @@ public class ClienteDAOImpSQLServer implements ClienteDAO {
 			psInsertCliente.setString(5, c.getCuit());
 			psInsertCliente.setDate(6, (Date) c.getFechaDeNacimiento()); 
 			psInsertCliente.setString(7, c.getEmail());
-			psInsertCliente.setLong(8, c.getDireccion().getIdDireccion());
+			psInsertCliente.setString(8, c.getDireccion().getIdDireccion());
 			psInsertCliente.setLong(9, c.getTelefono().getIdTelefono());
 			psInsertCliente.setLong(10, c.getPasaporte().getIdPasaporte());
 			psInsertCliente.setString(11, c.getPasajerofrecuente().getIdPasajeroFrecuente());
@@ -122,7 +121,16 @@ boolean exito = false;
 	            DireccionDAOImplSQLServer DirDAO = new DireccionDAOImplSQLServer();
 	            c.setDireccion(DirDAO.obtenerDireccion(idDirección));
 	            
+	            // pasaporte y pasajero frecuente
+	            TelefonoDAOImpSQLServer TelefonoDAO = new TelefonoDAOImpSQLServer();
+				c.setTelefono(TelefonoDAO.obtenerTelefono(idTelefono));
 	            
+	            PasaporteDAOImpSQLServer PasDAO = new PasaporteDAOImpSQLServer();
+				c.setPasaporte(PasDAO.obtenerPasaporte(idPasaporte));
+				
+				PasajeroFrecuenteDAOImpSQLServer PasFrecDAO = new PasajeroFrecuenteDAOImpSQLServer();
+				c.setPasajerofrecuente(PasFrecDAO.obtenerPasajeroFrecuente(idPasajeroFrecuente));
+				
 			}
 				
 } catch (SQLException e) {

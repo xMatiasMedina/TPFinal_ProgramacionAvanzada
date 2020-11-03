@@ -6,7 +6,7 @@ import mvc.modelo.dominio.Pais;
 
 public interface PaisDAO {
 	
-	public Pais getPais(String nombre);
+	public Pais getPais(String id);
 	
 	public List<String> getAllasString();
 }

@@ -4,7 +4,7 @@ import mvc.modelo.dominio.Direccion;
 
 public interface DireccionDAO {
 	
-	public abstract Direccion obtenerDireccion(String id);
+	public Direccion obtenerDireccion(String id);
 	
 
 }
