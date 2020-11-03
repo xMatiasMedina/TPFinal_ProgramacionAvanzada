@@ -2,6 +2,7 @@ package mvc.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.stream.Collectors;
 
 import javax.swing.JFrame;
 
@@ -42,7 +43,7 @@ public class UsuarioController implements ActionListener {
 					String password =  rpanel.getPassword_pf().getText();
 					String type = (String) rpanel.getType_cb().getSelectedItem();
 					int id = bll.getTypeAmount(dao.getAll(), type)+1;
-					dao.addUser(new Usuario(username, password, type+"-"+id));
+					dao.addUser(new Usuario(String.valueOf(dao.getAll().size()+1),username, password, type+"-"+id));
 					this.redirect(type, id);
 				}else
 					view.printPaneError("Username has already been taken");
@@ -54,7 +55,7 @@ public class UsuarioController implements ActionListener {
 				Usuario dbuser = dao.getUsuario(user);
 				if(dbuser == null)
 					view.printPaneError("User does not exist");
-				else if(!bll.validateUser(new Usuario(user, pass, null), dbuser))
+				else if(!bll.validateUser(new Usuario(null,user, pass, null), dbuser))
 					view.printPaneError("Incorrect password");
 				else {
 					//TODO pasar a ventana correspondiente
@@ -65,9 +66,17 @@ public class UsuarioController implements ActionListener {
 		}
 	}
 	
-	public void deleteUser(int idUser) {
+	public void deleteUser(int idUser, String tipo) {
+		Usuario usuario = dao.getAll().stream().filter(a -> {
+			if(!a.getType().equals("admin")) {
+			String[] info = a.getType().split("-");
+				if(info[0].equals(tipo) && info[1].equals(String.valueOf(idUser)))
+					return true;
+			}
+			return false;
+		}).collect(Collectors.toList()).get(0);
 		dao = UsuarioDAOFactory.getUsuarioDAOImp(ImpType.STREAM);
-		dao.deleteUser(dao.getUsuario(idUser));
+		dao.deleteUser(dao.getUsuario(usuario.getUsername()));
 	}
 	
 	private void redirect(String itype, @Nullable int id) {
