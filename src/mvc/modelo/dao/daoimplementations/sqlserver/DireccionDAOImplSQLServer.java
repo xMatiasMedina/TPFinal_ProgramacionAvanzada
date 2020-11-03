@@ -20,7 +20,7 @@ public class DireccionDAOImplSQLServer implements DireccionDAO {
 		con = Connect.getConnection();
 		Direccion d = new Direccion();
 		try {
-			psCliente = con.prepareStatement("SELECT * FROM dbo.cliente WHERE id=?");
+			psCliente = con.prepareStatement("SELECT * FROM dbo.direccion WHERE id=?");
 			psCliente.setString(1, id);
 					
 			ResultSet rs=psCliente.executeQuery();
