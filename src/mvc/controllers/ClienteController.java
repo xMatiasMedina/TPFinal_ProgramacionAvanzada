@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 
 import mvc.modelo.dao.daoimplementations.sqlserver.PaisDAOImpSQLServer;
 import mvc.modelo.dao.daoimplementations.sqlserver.ProvinciasDAOImpSQLServer;
-import mvc.modelo.dao.daoimplementations.stream.ClienteDAOImpObjectStream;
 import mvc.modelo.dao.daoimplementations.stream.PaisDAOImpFileStream;
 import mvc.modelo.dao.daoimplementations.stream.ProvinciasDAOImpFileStream;
 import mvc.modelo.dao.factories.ClienteDAOFactory;
@@ -18,6 +17,7 @@ import mvc.modelo.dao.factories.ImpType;
 import mvc.modelo.dao.idaos.ClienteDAO;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.Direccion;
+import mvc.modelo.dominio.Pais;
 import mvc.modelo.dominio.Pasaporte;
 import mvc.modelo.dominio.Provincia;
 import mvc.modelo.dominio.Telefono;
@@ -36,14 +36,14 @@ public class ClienteController implements ActionListener{
 				PaisDAOImpFileStream.getInstance().getAllasString().toArray(new String[5]),
 				ProvinciasDAOImpFileStream.getInstance().getAllasString().toArray(new String[23]));
 		view.setVisible(true);
-		dao = ClienteDAOFactory.getClienteDAOImp(ImpType.STREAM);
+		dao = ClienteDAOFactory.getClienteDAOImp(ImpType.SQLSERVER);
 		validateClient();
 		new VentaController(id+"",view.getVuelosPanel(), view.getAdquiridosPanel());
 		new VueloController(view.getVuelosPanel().getTable());
 	}
 
 	public void validateClient() {
-		if(dao.obtenerCliente(this.idclient) == null) {
+		if(dao.obtenerCliente(String.valueOf(this.idclient)) == null) {
 			view.printPaneWarning("You haven't registered yet");
 			view.switchPanel(0);
 		}
@@ -53,7 +53,7 @@ public class ClienteController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case "RDone_bt":
-				if(dao.obtenerCliente(this.idclient) == null) 
+				if(dao.obtenerCliente(String.valueOf(this.idclient)) == null) 
 					dao.registrarCliente(getClient());
 				else 
 					dao.modificarCliente(getClient());
@@ -63,7 +63,7 @@ public class ClienteController implements ActionListener{
 				view.switchPanel(0);
 				break;
 			case "Delete_bt":
-				dao.eliminarCliente(dao.obtenerCliente(idclient));
+				dao.eliminarCliente(dao.obtenerCliente(String.valueOf(idclient)));
 				UsuarioController scontroller = new UsuarioController();
 				scontroller.deleteUser(idclient);
 				view.setVisible(false);
@@ -80,11 +80,11 @@ public class ClienteController implements ActionListener{
 		Pasaporte pasaporte = new Pasaporte();
 		pasaporte.setNumero(register.getNumeroPasaporte_tf().getText());
 		pasaporte.setAutoridadDeEmision(register.getAutoridad_tf().getText());
-		String pais1 = (String) register.getPais_cbox().getSelectedItem();
+		String paisID = String.valueOf(register.getPais_cbox().getSelectedIndex()+1);
 		pasaporte.setPaisEmision
-		("Otro".equals(pais1)?
-				PaisDAOImpFileStream.getInstance().getPais(register.getOtro_tf().getText()):
-			PaisDAOImpFileStream.getInstance().getPais(pais1));//Validacion otro 1
+		("Otro".equals(PaisDAOImpSQLServer.getInstance().getPais(paisID).getNombre())?
+				new Pais(-1, register.getOtro_tf().getText()):
+			PaisDAOImpSQLServer.getInstance().getPais(paisID));//Validacion otro 1
 		pasaporte.setFechaDeEmision(register.getEmision_tf().getDate());
 		pasaporte.setFechaDeVencimiento(register.getVencimiento_tf().getDate());
 		Direccion direccion = new Direccion();
@@ -92,12 +92,12 @@ public class ClienteController implements ActionListener{
 		direccion.setAltura(register.getAltura_tf().getText());
 		direccion.setCiudad(register.getCiudad_tf().getText());
 		direccion.setCodigoPostal(register.getCodigo_tf().getText());
-		String pais2 = (String) register.getPais_cbox().getSelectedItem();
-		direccion.setPais(pais2.equals("Otro")?
-				PaisDAOImpFileStream.getInstance().getPais(register.getOtro_tf2().getText()):
-					PaisDAOImpFileStream.getInstance().getPais(pais2));//Validacion de otro 2
-		if(!"Otro".equals(pais2))
-			if("Argentina".equals(pais2))
+		String paisID2 = String.valueOf(register.getPais_cbox().getSelectedIndex()+1);
+		direccion.setPais(PaisDAOImpSQLServer.getInstance().getPais(paisID2).getNombre().equals("Otro")?
+				new Pais(-1, register.getOtro_tf2().getText())://TODO necesita un get por nombre
+					PaisDAOImpSQLServer.getInstance().getPais(paisID2));//Validacion de otro 2
+		if(!"Otro".equals(PaisDAOImpSQLServer.getInstance().getPais(paisID2).getNombre()))
+			if("Argentina".equals(PaisDAOImpSQLServer.getInstance().getPais(paisID2).getNombre()))
 				direccion.setProvincia
 				(ProvinciasDAOImpFileStream.getInstance().getProvincia
 						((String) register.getProvincia_cbox().getSelectedItem()));

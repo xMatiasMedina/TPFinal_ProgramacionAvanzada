@@ -52,7 +52,7 @@ public class VentaController implements ActionListener {
 		case "Comprar_bt":
 			ComprarVuelosPanel comprarview = (ComprarVuelosPanel) comprarVuelosPanel;
 			try {
-				Cliente cliente = ClienteDAOFactory.getClienteDAOImp(ImpType.SQLSERVER).obtenerCliente(Integer.parseInt(idcliente));
+				Cliente cliente = ClienteDAOFactory.getClienteDAOImp(ImpType.SQLSERVER).obtenerCliente(idcliente);
 				Vuelo vuelo = new VueloDAOImpSQLServer().obtenerVuelo(comprarview.getIdVuelo_tf().getText());
 				if(new PasaporteBLL().validar(cliente.getPasaporte(), vuelo)) {
 					if(new VueloBLL().disponible(vuelo, new VentaDAOImpObjectStream().obtenerVentas())) {//TODO revisar cuando haya data base

@@ -6,7 +6,7 @@ import mvc.modelo.dominio.Cliente;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
 public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
 
     private String file;
@@ -80,5 +80,17 @@ public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
     public void close() throws IOException {
 
     }
-}
 
+	@Override
+	public boolean modificarCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Cliente obtenerCliente(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+*/
