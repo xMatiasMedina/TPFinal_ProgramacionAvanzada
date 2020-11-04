@@ -19,7 +19,7 @@ public class ClienteDAOImpSQLServer implements ClienteDAO {
 		
 		//query
 		String insertCliente = "INSERT INTO dbo.cliente (id_cliente, nombre, apellido, dni, cuit_cuil,"+
-		"fecha_nacimiento, email, id_dirección, id_telefono, id_pasaporte, id_pasajero_frecuente)" +
+		"fecha_nacimiento, email, id_direcciï¿½n, id_telefono, id_pasaporte, id_pasajero_frecuente)" +
 		" VALUES (?,?,?,?,?,?,?,?,?,?,?)"		;
 		
 		try (Connection connection = Connect.getConnection();
@@ -112,14 +112,14 @@ boolean exito = false;
 	            c.setFechaDeNacimiento(rs.getDate("fecha_nacimiento"));
 	            c.setEmail("email");
 	            
-	            String idDirección = rs.getString("id_direccion");
+	            String idDireccion = rs.getString("id_direccion");
 	            String idTelefono = rs.getString("id_telefono");
 	            String idPasaporte = rs.getString("id_pasaporte");
 	            String idPasajeroFrecuente = rs.getString("id_pasajero_frecuente");
 	            
 	            //llamo a metodo obtener de cada clase
 	            DireccionDAOImplSQLServer DirDAO = new DireccionDAOImplSQLServer();
-	            c.setDireccion(DirDAO.obtenerDireccion(idDirección));
+	            c.setDireccion(DirDAO.obtenerDireccion(idDireccion));
 	            
 	            // pasaporte y pasajero frecuente
 	            TelefonoDAOImpSQLServer TelefonoDAO = new TelefonoDAOImpSQLServer();

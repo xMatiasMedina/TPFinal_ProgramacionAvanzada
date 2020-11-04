@@ -94,6 +94,34 @@ boolean exito = false;
 		}
 			return la;
 	}
+	
+	
+	@Override
+	public LineaAerea obtenerLAerea(int id) {
+		Connection con = null;
+		PreparedStatement psLAerea;
+		
+		con = Connect.getConnection();
+		LineaAerea la = new LineaAerea();
+		try {
+			psLAerea = con.prepareStatement("SELECT * FROM dbo.telefono WHERE id_aerolinea=?");
+			psLAerea.setInt(1, id);
+					
+			ResultSet rs=psLAerea.executeQuery();
+		
+			while (rs.next()) {
+				//setear valores
+				la.setAerolinea(rs.getString("nombre_aerolinea"));
+				la.setAlianza(Alianza.valueOf(rs.getString("alianza")));
+				la.setId(rs.getInt("id_aerolinea"));
+			}	
+			
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+			return la;
+	}
+
 
 	@Override
 	public boolean eliminarLAerea(LineaAerea la) {
@@ -118,5 +146,4 @@ boolean exito = false;
 		}
 			return exito;
 	}
-
 }
