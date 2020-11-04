@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +21,26 @@ public class PaisDAOImpSQLServer implements PaisDAO{
 
 	@Override
 	public List<String> getAllasString() {
-		return null;//Arrays.asList("Argentina","Brasil","Otro");
+		List<String> list = new ArrayList<String>();
+		Connection con = null;
+		PreparedStatement psPais;
+		
+		con = Connect.getConnection();
+		Pais p = new Pais();
+		try {
+			psPais = con.prepareStatement("SELECT * FROM dbo.pais");
+			
+			ResultSet rs=psPais.executeQuery();
+			
+			while (rs.next()) {
+				list.add(rs.getString("nombre_pais"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+		return list;
 	}
 	
 	public static PaisDAOImpSQLServer getInstance() {
@@ -30,8 +50,8 @@ public class PaisDAOImpSQLServer implements PaisDAO{
 	}
 
 	@Override
-	public Pais getPais(String id) {
-		
+	public Pais getPais(int idpais) {
+		String id = String.valueOf(idpais);
 		Connection con = null;
 		PreparedStatement psPais;
 		
@@ -53,5 +73,44 @@ public class PaisDAOImpSQLServer implements PaisDAO{
 		}
 		
 		return p;
+	}
+	
+	@Override
+	public Pais getPais(String nombre) {
+		
+		Connection con = null;
+		PreparedStatement psPais;
+		
+		con = Connect.getConnection();
+		Pais p = new Pais();
+		try {
+			psPais = con.prepareStatement("SELECT * FROM dbo.pais WHERE nombre_pais=?");
+			psPais.setString(1, nombre);
+			
+			
+			ResultSet rs=psPais.executeQuery();
+			
+			while (rs.next()) {
+			p.setIdPais(Integer.parseInt(rs.getString("id")));
+			p.setNombre(rs.getString("nombre_pais"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+		return p;
+	}
+
+	@Override
+	public void addPais(Pais pais) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removePais(Pais pais) {
+		// TODO Auto-generated method stub
+		
 	}
 }
