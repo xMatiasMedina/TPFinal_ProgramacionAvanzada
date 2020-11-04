@@ -84,7 +84,7 @@ public class UsuarioController implements ActionListener {
 		if("Cliente".equals(itype)) {
 			new ClienteController(id);
 		}else if("Proveedor".equals(itype)){
-			
+			new LineaAereaController(id);
 		}else {
 			//TODO esto seria para el admin
 		}

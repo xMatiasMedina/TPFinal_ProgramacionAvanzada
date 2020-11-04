@@ -80,12 +80,25 @@ public class AeropuertoDAOImplSQLServer implements AeropuertoDAO {
 				ProvinciasDAOImpSQLServer ProvinciaDAO = new ProvinciasDAOImpSQLServer();
 				ae.setProvincia(ProvinciaDAO.getProvincia(idProvincia));
 				result.add(ae);
+				ae = new Aeropuerto();
 			}
 			
 		}catch (SQLException e) {
 			System.out.println(e);
 		}
 			return result;
+	}
+
+	@Override
+	public void agregarAeropuerto(Aeropuerto aeropuerto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeAeropuerto(Aeropuerto aeropuerto) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -64,4 +64,22 @@ public class PaisDAOImpFileStream implements PaisDAO, AutoCloseable {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Pais getPais(int idpais) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addPais(Pais pais) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removePais(Pais pais) {
+		// TODO Auto-generated method stub
+		
+	}
 }

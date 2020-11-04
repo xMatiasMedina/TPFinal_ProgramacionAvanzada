@@ -18,6 +18,12 @@ public class Pais implements Serializable {
 		return idPais;
 	}
 
+	
+	
+	public void setIdPais(int idPais) {
+		this.idPais = idPais;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

@@ -33,7 +33,7 @@ public class ClienteController implements ActionListener{
 	public ClienteController(int id) {
 		this.idclient = id;
 		view = new ClientFrame(this,
-				PaisDAOImpFileStream.getInstance().getAllasString().toArray(new String[5]),
+				PaisDAOImpSQLServer.getInstance().getAllasString().toArray(new String[5]),
 				ProvinciasDAOImpFileStream.getInstance().getAllasString().toArray(new String[23]));
 		view.setVisible(true);
 		dao = ClienteDAOFactory.getClienteDAOImp(ImpType.SQLSERVER);
