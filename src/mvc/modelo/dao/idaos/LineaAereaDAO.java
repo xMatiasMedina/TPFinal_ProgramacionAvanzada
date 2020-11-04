@@ -6,5 +6,6 @@ public interface LineaAereaDAO {
     public boolean registrarLAerea(LineaAerea lineaAerea);
     public void modificarLAerea(LineaAerea lineaAerea);
     public LineaAerea obtenerLAerea(String nombre);
+    public LineaAerea obtenerLAerea(int id);
     public boolean eliminarLAerea(LineaAerea lineaAerea);
 }

@@ -83,4 +83,10 @@ public class LineaAereaDAOImpObjectStream implements LineaAereaDAO,AutoCloseable
     public void close() throws Exception {
 
     }
+
+	@Override
+	public LineaAerea obtenerLAerea(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

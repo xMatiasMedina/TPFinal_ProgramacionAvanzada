@@ -65,7 +65,7 @@ public class ClienteController implements ActionListener{
 			case "Delete_bt":
 				dao.eliminarCliente(dao.obtenerCliente(String.valueOf(idclient)));
 				UsuarioController scontroller = new UsuarioController();
-				scontroller.deleteUser(idclient);
+				scontroller.deleteUser(idclient, "Cliente");
 				view.setVisible(false);
 				scontroller.startLogin();
 				break;

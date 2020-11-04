@@ -57,6 +57,8 @@ public class VentaController implements ActionListener {
 				if(new PasaporteBLL().validar(cliente.getPasaporte(), vuelo)) {
 					if(new VueloBLL().disponible(vuelo, new VentaDAOImpObjectStream().obtenerVentas())) {//TODO revisar cuando haya data base
 						if(new ClienteBLL().mayorde18(cliente)) {
+							vuelo.setVendidos(vuelo.getVendidos()+1);
+							new VueloDAOImpSQLServer().modificarVuelo(vuelo);
 							FormaDePago formadepago = FormaDePago.get((String) comprarview.getFormadePago_cbox().getSelectedItem());
 							if(FormaDePago.TARJETA_CREDITO.equals(formadepago)) {
 								formadepago.setDetalle((String) comprarview.getCuotas_cbox().getSelectedItem());
