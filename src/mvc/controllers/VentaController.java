@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.JPanel;
 
+import exceptions.WrongInputException;
 import mvc.modelo.bll.ClienteBLL;
 import mvc.modelo.bll.PasaporteBLL;
 import mvc.modelo.bll.VueloBLL;
@@ -72,7 +73,7 @@ public class VentaController implements ActionListener {
 						comprarview.printWarning("No hay espacio disponible en este vuelo");
 				}else
 					comprarview.printWarning("Pasaporte no valido");
-			}catch(NumberFormatException e1) {
+			}catch(NumberFormatException | WrongInputException e1) {
 				e1.printStackTrace();
 				comprarview.printWarning("Input no valido");
 			}
@@ -85,7 +86,7 @@ public class VentaController implements ActionListener {
 					dao.eliminarVenta(ventaEliminada);
 					((VentasTableModel) view.getTable().getModel()).remove(ventaEliminada.getIdVenta());
 				}
-			}catch(NumberFormatException e1) {
+			}catch(NumberFormatException | WrongInputException e1) {
 				e1.printStackTrace();
 				view.printWarning("Input no valido");
 			}

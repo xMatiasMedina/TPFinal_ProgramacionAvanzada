@@ -3,6 +3,7 @@ package mvc.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import exceptions.WrongInputException;
 import mvc.modelo.dao.daoimplementations.sqlserver.AeropuertoDAOImplSQLServer;
 import mvc.modelo.dao.daoimplementations.sqlserver.PaisDAOImpSQLServer;
 import mvc.modelo.dao.daoimplementations.stream.ProvinciasDAOImpFileStream;
@@ -41,7 +42,7 @@ public class AeropuertoController implements ActionListener{
 			dao.removeAeropuerto(dao.obtenerAeropuerto(adminframe.getAdminPanel().getAeropuerto_tf().getText()));
 			break;
 		}
-		}catch(NullPointerException e1) {
+		}catch(NullPointerException | WrongInputException e1) {
 			e1.printStackTrace();
 			adminframe.printPaneError("Something went wrong");
 		}
