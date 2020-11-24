@@ -1,13 +1,14 @@
 package mvc.modelo.dao.factories;
 
 import mvc.modelo.dao.daoimplementations.sqlserver.ClienteDAOImpSQLServer;
+import mvc.modelo.dao.daoimplementations.stream.ClienteDAOImpObjectStream;
 import mvc.modelo.dao.idaos.ClienteDAO;
 
 public class ClienteDAOFactory {
 	public static ClienteDAO getClienteDAOImp(ImpType data) {
 		switch(data) {
 			case STREAM:
-				//return new ClienteDAOImpObjectStream();
+				return new ClienteDAOImpObjectStream();
 			case SQLSERVER:
 				return new ClienteDAOImpSQLServer();
 			default:

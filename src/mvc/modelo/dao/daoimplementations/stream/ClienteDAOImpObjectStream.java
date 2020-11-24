@@ -6,7 +6,7 @@ import mvc.modelo.dominio.Cliente;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-/*
+
 public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
 
     private String file;
@@ -14,6 +14,7 @@ public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
      
     public ClienteDAOImpObjectStream() {
         file = "resources/objectfiles/clientes.dat";
+        clientes = new ArrayList<Cliente>();
         readFile();
     }
 
@@ -25,13 +26,14 @@ public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
     }
 
     @Override
-    public void modificarCliente(Cliente cliente) {
+    public  boolean modificarCliente(Cliente cliente) {
         clientes.forEach(a -> {
             for (int i = 0; i < clientes.size(); i++)
-                if(clientes.get(i).getIdCliente()==cliente.getIdCliente())
+                if(clientes.get(i).getIdCliente()==cliente.getIdCliente()) 
                     clientes.add(i,cliente);
         });
         updateFile();
+        return false;
     }
 
     private void updateFile() {
@@ -58,14 +60,6 @@ public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
     }
 
     @Override
-    public Cliente obtenerCliente(int id) {
-    	for (Cliente cliente : clientes) 
-			if(cliente.getIdCliente().equals(""+id))
-				return cliente;
-		return null;
-    }
-
-    @Override
     public boolean eliminarCliente(Cliente cliente) {
         for (int i = 0; i < clientes.size(); i++)
             if(clientes.get(i).getIdCliente()==cliente.getIdCliente()) {
@@ -82,15 +76,8 @@ public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
     }
 
 	@Override
-	public boolean modificarCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public Cliente obtenerCliente(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return clientes.stream().filter(a -> a.getIdCliente().equals(id)).findFirst().get();
 	}
 }
-*/
+
