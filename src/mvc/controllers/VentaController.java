@@ -15,6 +15,8 @@ import mvc.modelo.dao.daoimplementations.sqlserver.VueloDAOImpSQLServer;
 import mvc.modelo.dao.daoimplementations.stream.VentaDAOImpObjectStream;
 import mvc.modelo.dao.factories.ClienteDAOFactory;
 import mvc.modelo.dao.factories.ImpType;
+import mvc.modelo.dao.factories.VentaDAOFactory;
+import mvc.modelo.dao.factories.VueloDAOFactory;
 import mvc.modelo.dao.idaos.ClienteDAO;
 import mvc.modelo.dao.idaos.VentaDAO;
 import mvc.modelo.dao.idaos.VueloDAO;
@@ -53,13 +55,13 @@ public class VentaController implements ActionListener {
 		case "Comprar_bt":
 			ComprarVuelosPanel comprarview = (ComprarVuelosPanel) comprarVuelosPanel;
 			try {
-				Cliente cliente = ClienteDAOFactory.getClienteDAOImp(ImpType.SQLSERVER).obtenerCliente(idcliente);
-				Vuelo vuelo = new VueloDAOImpSQLServer().obtenerVuelo(comprarview.getIdVuelo_tf().getText());
+				Cliente cliente = ClienteDAOFactory.getClienteDAOImp(ImpType.STREAM).obtenerCliente(idcliente);
+				Vuelo vuelo = VueloDAOFactory.getVueloDAO(ImpType.STREAM).obtenerVuelo(comprarview.getIdVuelo_tf().getText());
 				if(new PasaporteBLL().validar(cliente.getPasaporte(), vuelo)) {
-					if(new VueloBLL().disponible(vuelo, new VentaDAOImpObjectStream().obtenerVentas())) {//TODO revisar cuando haya data base
+					if(new VueloBLL().disponible(vuelo, VentaDAOFactory.getVentaDAO(ImpType.STREAM).obtenerVentas())) {//TODO revisar cuando haya data base
 						if(new ClienteBLL().mayorde18(cliente)) {
 							vuelo.setVendidos(vuelo.getVendidos()+1);
-							new VueloDAOImpSQLServer().modificarVuelo(vuelo);
+							VueloDAOFactory.getVueloDAO(ImpType.STREAM).modificarVuelo(vuelo);
 							FormaDePago formadepago = FormaDePago.get((String) comprarview.getFormadePago_cbox().getSelectedItem());
 							if(FormaDePago.TARJETA_CREDITO.equals(formadepago)) {
 								formadepago.setDetalle((String) comprarview.getCuotas_cbox().getSelectedItem());
