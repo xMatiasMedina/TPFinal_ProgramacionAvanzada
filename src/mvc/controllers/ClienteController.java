@@ -33,10 +33,10 @@ public class ClienteController implements ActionListener{
 	public ClienteController(int id) {
 		this.idclient = id;
 		view = new ClientFrame(this,
-				PaisDAOImpSQLServer.getInstance().getAllasString().toArray(new String[5]),
+				PaisDAOImpFileStream.getInstance().getAllasString().toArray(new String[5]),
 				ProvinciasDAOImpFileStream.getInstance().getAllasString().toArray(new String[23]));
 		view.setVisible(true);
-		dao = ClienteDAOFactory.getClienteDAOImp(ImpType.SQLSERVER);
+		dao = ClienteDAOFactory.getClienteDAOImp(ImpType.STREAM);
 		validateClient();
 		new VentaController(id+"",view.getVuelosPanel(), view.getAdquiridosPanel());
 		new VueloController(view.getVuelosPanel().getTable());
@@ -82,9 +82,9 @@ public class ClienteController implements ActionListener{
 		pasaporte.setAutoridadDeEmision(register.getAutoridad_tf().getText());
 		String paisID = String.valueOf(register.getPais_cbox().getSelectedIndex()+1);
 		pasaporte.setPaisEmision
-		("Otro".equals(PaisDAOImpSQLServer.getInstance().getPais(paisID).getNombre())?
+		("Otro".equals(PaisDAOImpFileStream.getInstance().getPais(paisID).getNombre())?
 				new Pais(-1, register.getOtro_tf().getText()):
-			PaisDAOImpSQLServer.getInstance().getPais(paisID));//Validacion otro 1
+			PaisDAOImpFileStream.getInstance().getPais(paisID));//Validacion otro 1
 		pasaporte.setFechaDeEmision(register.getEmision_tf().getDate());
 		pasaporte.setFechaDeVencimiento(register.getVencimiento_tf().getDate());
 		Direccion direccion = new Direccion();
@@ -93,11 +93,11 @@ public class ClienteController implements ActionListener{
 		direccion.setCiudad(register.getCiudad_tf().getText());
 		direccion.setCodigoPostal(register.getCodigo_tf().getText());
 		String paisID2 = String.valueOf(register.getPais_cbox().getSelectedIndex()+1);
-		direccion.setPais(PaisDAOImpSQLServer.getInstance().getPais(paisID2).getNombre().equals("Otro")?
+		direccion.setPais(PaisDAOImpFileStream.getInstance().getPais(paisID2).getNombre().equals("Otro")?
 				new Pais(-1, register.getOtro_tf2().getText())://TODO necesita un get por nombre
-					PaisDAOImpSQLServer.getInstance().getPais(paisID2));//Validacion de otro 2
-		if(!"Otro".equals(PaisDAOImpSQLServer.getInstance().getPais(paisID2).getNombre()))
-			if("Argentina".equals(PaisDAOImpSQLServer.getInstance().getPais(paisID2).getNombre()))
+					PaisDAOImpFileStream.getInstance().getPais(paisID2));//Validacion de otro 2
+		if(!"Otro".equals(PaisDAOImpFileStream.getInstance().getPais(paisID2).getNombre()))
+			if("Argentina".equals(PaisDAOImpFileStream.getInstance().getPais(paisID2).getNombre()))
 				direccion.setProvincia
 				(ProvinciasDAOImpFileStream.getInstance().getProvincia
 						((String) register.getProvincia_cbox().getSelectedItem()));

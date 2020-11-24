@@ -4,6 +4,7 @@ import mvc.modelo.dao.idaos.LineaAereaDAO;
 import mvc.modelo.dominio.LineaAerea;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LineaAereaDAOImpObjectStream implements LineaAereaDAO,AutoCloseable {
@@ -18,6 +19,7 @@ public class LineaAereaDAOImpObjectStream implements LineaAereaDAO,AutoCloseable
      */
     public LineaAereaDAOImpObjectStream() {
         file = new File("resource/objectfiles/lineasaereas.dat");
+        lineaAereas = new ArrayList<LineaAerea>();
         readFile();
     }
 
@@ -86,7 +88,6 @@ public class LineaAereaDAOImpObjectStream implements LineaAereaDAO,AutoCloseable
 
 	@Override
 	public LineaAerea obtenerLAerea(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return lineaAereas.stream().filter(a -> a.getId() == id).findFirst().get();
 	}
 }

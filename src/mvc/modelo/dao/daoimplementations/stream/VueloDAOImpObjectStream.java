@@ -4,6 +4,7 @@ import mvc.modelo.dao.idaos.VueloDAO;
 import mvc.modelo.dominio.Vuelo;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VueloDAOImpObjectStream implements VueloDAO, AutoCloseable {
@@ -18,6 +19,7 @@ public class VueloDAOImpObjectStream implements VueloDAO, AutoCloseable {
      */
     public VueloDAOImpObjectStream() {
         file = new File("resource/objectfiles/vuelos.dat");
+        vuelos = new ArrayList<Vuelo>();
         readFile();
     }
 
