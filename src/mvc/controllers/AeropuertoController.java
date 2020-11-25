@@ -6,7 +6,10 @@ import java.awt.event.ActionListener;
 import exceptions.WrongInputException;
 import mvc.modelo.dao.daoimplementations.sqlserver.AeropuertoDAOImplSQLServer;
 import mvc.modelo.dao.daoimplementations.sqlserver.PaisDAOImpSQLServer;
+import mvc.modelo.dao.daoimplementations.stream.PaisDAOImpFileStream;
 import mvc.modelo.dao.daoimplementations.stream.ProvinciasDAOImpFileStream;
+import mvc.modelo.dao.factories.AeropuertoDAOFactory;
+import mvc.modelo.dao.factories.ImpType;
 import mvc.modelo.dao.idaos.AeropuertoDAO;
 import mvc.modelo.dominio.Aeropuerto;
 import mvc.modelo.dominio.Provincia;
@@ -18,11 +21,14 @@ public class AeropuertoController implements ActionListener{
 	private AdminFrame adminframe;
 	private AeropuertoDAO dao;
 
-	public AeropuertoController(AdminFrame adminframe) {
+	public AeropuertoController() {
+		this.dao = AeropuertoDAOFactory.getAeropuertoDAO(ImpType.STREAM);
+	}
+	
+	public void setadminframe(AdminFrame adminframe) {
 		this.adminframe = adminframe;
-		this.dao = new AeropuertoDAOImplSQLServer();
 		adminframe.getAddAeropuertoPanel().loadCBoxes
-		(PaisDAOImpSQLServer.getInstance().getAllasString(),
+		(PaisDAOImpFileStream.getInstance().getAllasString(),
 				ProvinciasDAOImpFileStream.getInstance().getAllasString());
 	}
 

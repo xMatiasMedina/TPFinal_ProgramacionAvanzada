@@ -27,7 +27,7 @@ public class AeropuertoDAOImpStream implements AeropuertoDAO{
 	
 	@Override
 	public Aeropuerto obtenerAeropuerto(String id) {
-		return aeropuertos.stream().filter(a -> a.getIdentificacion().equals(id)).findFirst().get();
+		return aeropuertos.stream().filter(a -> a.getIdentificacion().equals(id)).findFirst().orElse(null);
 	}
 
 	@Override

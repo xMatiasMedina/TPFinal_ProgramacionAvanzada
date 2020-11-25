@@ -20,6 +20,7 @@ public class UsuarioDAOImpObjectStream implements UsuarioDAO, AutoCloseable{
 	
 	public UsuarioDAOImpObjectStream() {
 		file = "resources/objectfiles/usuarios.dat";
+		usuarios = new ArrayList<Usuario>();
 		readFile();
 	}
 

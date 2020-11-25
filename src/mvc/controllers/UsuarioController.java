@@ -60,7 +60,7 @@ public class UsuarioController implements ActionListener {
 				else {
 					//TODO pasar a ventana correspondiente
 					String itype = bll.getUserType(dbuser);
-					this.redirect(itype, itype == "admin"?null:bll.getUserID(dbuser));
+					this.redirect(itype, itype.equals("admin")?0:bll.getUserID(dbuser));
 				}
 				break;
 		}

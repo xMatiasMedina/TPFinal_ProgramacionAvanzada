@@ -77,7 +77,7 @@ public class ClienteDAOImpObjectStream implements ClienteDAO, AutoCloseable {
 
 	@Override
 	public Cliente obtenerCliente(String id) {
-		return clientes.stream().filter(a -> a.getIdCliente().equals(id)).findFirst().get();
+		return clientes.stream().filter(a -> a.getIdCliente().equals(id)).findFirst().orElse(null);
 	}
 }
 

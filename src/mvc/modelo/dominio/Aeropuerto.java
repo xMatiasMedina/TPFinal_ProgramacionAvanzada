@@ -1,6 +1,8 @@
 package mvc.modelo.dominio;
 
-public class Aeropuerto {
+import java.io.Serializable;
+
+public class Aeropuerto implements Serializable {
 	
 	  private String identificacion; 
 	  private String ciudad;

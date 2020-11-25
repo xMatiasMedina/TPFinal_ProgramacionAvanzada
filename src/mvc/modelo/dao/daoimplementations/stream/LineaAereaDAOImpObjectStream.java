@@ -88,6 +88,6 @@ public class LineaAereaDAOImpObjectStream implements LineaAereaDAO,AutoCloseable
 
 	@Override
 	public LineaAerea obtenerLAerea(int id) {
-		return lineaAereas.stream().filter(a -> a.getId() == id).findFirst().get();
+		return lineaAereas.stream().filter(a -> a.getId() == id).findFirst().orElse(null);
 	}
 }

@@ -13,7 +13,10 @@ public class AdminController implements ActionListener {
 	private AdminFrame adminframe;
 
 	public AdminController() {
-		adminframe = new AdminFrame(this, new AeropuertoController(adminframe));
+		AeropuertoController aecontroller = new AeropuertoController();
+		adminframe = new AdminFrame(this, aecontroller);
+		aecontroller.setadminframe(adminframe);
+		adminframe.setVisible(true);
 	}
 
 	@Override
