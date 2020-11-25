@@ -35,7 +35,7 @@ public class VentaController implements ActionListener {
 	private VentaDAO dao;
 	
 	public VentaController(String clienteid, JPanel comprarVuelosPanel, JPanel adquiridosPanel) {
-		dao = new VentaDAOImpObjectStream();//TODO agregar cuando sea implementado
+		dao = VentaDAOFactory.getVentaDAO(ImpType.STREAM);//TODO agregar cuando sea implementado
 		this.adquiridosPanel = adquiridosPanel;
 		this.comprarVuelosPanel = comprarVuelosPanel;
 		ComprarVuelosPanel comprarview = (ComprarVuelosPanel) comprarVuelosPanel;

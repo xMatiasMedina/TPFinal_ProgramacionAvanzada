@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import mvc.modelo.dao.daoimplementations.sqlserver.LineaAereaDAOImpSQLServer;
+import mvc.modelo.dao.factories.ImpType;
+import mvc.modelo.dao.factories.LineaAereaDAOFactory;
 import mvc.modelo.dao.idaos.LineaAereaDAO;
 import mvc.modelo.dominio.Alianza;
 import mvc.modelo.dominio.LineaAerea;
@@ -17,7 +19,7 @@ public class LineaAereaController implements ActionListener {
 	private int idLineaAerea;
 	
 	public LineaAereaController(int idLineaAerea) {
-		this.dao = new LineaAereaDAOImpSQLServer();
+		this.dao = LineaAereaDAOFactory.getLineaAereaDAO(ImpType.STREAM);
 		this.view = new LineaAereaFrame(this, Alianza.values());
 		this.view.setVisible(true);
 		this.idLineaAerea = idLineaAerea;

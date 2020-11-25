@@ -2,8 +2,10 @@ package mvc.modelo.dao.daoimplementations.stream;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,16 @@ public class PaisDAOImpFileStream implements PaisDAO, AutoCloseable {
 			e.printStackTrace();
 		}
 	}
+	
+	private void updateFile() {
+        try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(file))){
+            writer.writeObject(paises);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	 }
 
 	@Override
 	public void close() throws Exception {
@@ -67,19 +79,19 @@ public class PaisDAOImpFileStream implements PaisDAO, AutoCloseable {
 
 	@Override
 	public Pais getPais(int idpais) {
-		// TODO Auto-generated method stub
-		return null;
+		return paises.stream().filter(a -> a.getIdPais() == idpais).findFirst().get();
 	}
 
 	@Override
 	public void addPais(Pais pais) {
-		// TODO Auto-generated method stub
-		
+		paises.add(pais);
+		updateFile();
 	}
 
 	@Override
 	public void removePais(Pais pais) {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < paises.size(); i++) 
+			if(paises.get(i).getNombre().equals(pais.getNombre()))
+				paises.remove(i);
 	}
 }
