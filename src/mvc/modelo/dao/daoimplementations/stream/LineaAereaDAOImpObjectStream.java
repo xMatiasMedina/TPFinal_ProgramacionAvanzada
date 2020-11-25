@@ -18,7 +18,7 @@ public class LineaAereaDAOImpObjectStream implements LineaAereaDAO,AutoCloseable
     un path absoluto no estoy seguro. (Con esto me refiero al JAR no a una compilacion de repositorio)
      */
     public LineaAereaDAOImpObjectStream() {
-        file = new File("resource/objectfiles/lineasaereas.dat");
+        file = new File("resources/objectfiles/lineasaereas.dat");
         lineaAereas = new ArrayList<LineaAerea>();
         readFile();
     }

@@ -1,6 +1,7 @@
 package mvc.modelo.dao.daoimplementations.stream;
 
 import mvc.modelo.dao.idaos.VueloDAO;
+
 import mvc.modelo.dominio.Vuelo;
 
 import java.io.*;
@@ -18,7 +19,7 @@ public class VueloDAOImpObjectStream implements VueloDAO, AutoCloseable {
     un path absoluto no estoy seguro. (Con esto me refiero al JAR no a una compilacion de repositorio)
      */
     public VueloDAOImpObjectStream() {
-        file = new File("resource/objectfiles/vuelos.dat");
+        file = new File("resources/objectfiles/vuelos.dat");
         vuelos = new ArrayList<Vuelo>();
         readFile();
     }
