@@ -17,6 +17,10 @@ import mvc.modelo.bll.VueloBLL;
 import mvc.modelo.dao.daoimplementations.sqlserver.AeropuertoDAOImplSQLServer;
 import mvc.modelo.dao.daoimplementations.sqlserver.LineaAereaDAOImpSQLServer;
 import mvc.modelo.dao.daoimplementations.sqlserver.VueloDAOImpSQLServer;
+import mvc.modelo.dao.factories.AeropuertoDAOFactory;
+import mvc.modelo.dao.factories.ImpType;
+import mvc.modelo.dao.factories.LineaAereaDAOFactory;
+import mvc.modelo.dao.factories.VueloDAOFactory;
 import mvc.modelo.dao.idaos.VueloDAO;
 import mvc.modelo.dominio.Vuelo;
 
@@ -29,7 +33,7 @@ public class VueloController implements ActionListener{
 	private int idLineaAerea;
 
 	public VueloController(JTable... tables) {
-		dao = new VueloDAOImpSQLServer();
+		dao = VueloDAOFactory.getVueloDAO(ImpType.STREAM);
 		this.tables = tables;
 		loadTables(tables);
 	}
@@ -38,7 +42,7 @@ public class VueloController implements ActionListener{
 		this.idLineaAerea = idLineaAerea;
 		this.addVuelosPanel = addVuelosPanel;
 		addVuelosPanel.setListener(this);
-		addVuelosPanel.loadAeropuertos(new AeropuertoDAOImplSQLServer().getAll());
+		addVuelosPanel.loadAeropuertos(AeropuertoDAOFactory.getAeropuertoDAO(ImpType.STREAM).getAll());
 		manageVuelosPanel.setListener(this);
 		this.manageVuelosPanel = manageVuelosPanel;
 		loadTablesLA(manageVuelosPanel.getTable());
@@ -83,10 +87,10 @@ public class VueloController implements ActionListener{
 		llegada.setMinutes(Integer.valueOf(time2[1]));
 		Vuelo vuelo = new Vuelo(
 				"esta rep",
-				new LineaAereaDAOImpSQLServer().obtenerLAerea(idLineaAerea),
+				LineaAereaDAOFactory.getLineaAereaDAO(ImpType.STREAM).obtenerLAerea(idLineaAerea),
 				Integer.valueOf(addVuelosPanel.getAsientos_tf().getText()),
-				new AeropuertoDAOImplSQLServer().obtenerAeropuerto((String) addVuelosPanel.getArSalida_cbox().getSelectedItem()),
-				new AeropuertoDAOImplSQLServer().obtenerAeropuerto((String) addVuelosPanel.getArLlegada_cbox().getSelectedItem()),
+				AeropuertoDAOFactory.getAeropuertoDAO(ImpType.STREAM).obtenerAeropuerto((String) addVuelosPanel.getArSalida_cbox().getSelectedItem()),
+				AeropuertoDAOFactory.getAeropuertoDAO(ImpType.STREAM).obtenerAeropuerto((String) addVuelosPanel.getArLlegada_cbox().getSelectedItem()),
 				salida,
 				llegada,
 				null
